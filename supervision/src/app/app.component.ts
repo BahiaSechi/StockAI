@@ -26,8 +26,8 @@ export class AppComponent {
                 label: 'Trading strategies',
                 icon: 'pi pi-credit-card',
                 items: [
-                    {label: 'Strat 1'},
-                    {label: 'Strat 2'}
+                    {label: 'Strat 1', routerLink: "strategie"},
+                    {label: 'Strat 2', routerLink: "strategie"}
                 ]
             }
         ];
