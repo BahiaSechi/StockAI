@@ -15,19 +15,19 @@ export class AppComponent {
             {
                 label: 'Home',
                 icon: 'pi pi-home',
-                routerLink: ""
+                routerLink: 'home'
             },
             {
                 label: 'Trainer',
                 icon: 'pi pi-pencil',
-                routerLink: "trainer"
+                routerLink: 'trainer'
             },
             {
                 label: 'Trading strategies',
                 icon: 'pi pi-credit-card',
                 items: [
-                    {label: 'Strat 1', routerLink: "strategie"},
-                    {label: 'Strat 2', routerLink: "strategie"}
+                    {label: 'Strat 1', routerLink: 'strategie'},
+                    {label: 'Strat 2', routerLink: 'strategie'}
                 ]
             }
         ];
