@@ -6,11 +6,17 @@ import { AppComponent } from './app.component';
 
 import {MenubarModule} from 'primeng/menubar';
 import {AccordionModule} from 'primeng/accordion';     //accordion and accordion tab
-import {MenuItem} from 'primeng/api';                  //api
+import {MenuItem} from 'primeng/api';
+import { HomeComponent } from './component/home/home.component';
+import { TrainerComponent } from './component/trainer/trainer.component';
+import { StrategieComponent } from './component/strategie/strategie.component';                  //api
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    TrainerComponent,
+    StrategieComponent
   ],
   imports: [
     BrowserModule,
