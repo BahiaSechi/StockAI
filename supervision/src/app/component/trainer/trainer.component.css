@@ -1,0 +1,11 @@
+.root-trainer {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    background-color: blue;
+}
+
+.splitter-trainer {
+    width: 100%;
+    height: 100%;
+}

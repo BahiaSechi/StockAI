@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StockService } from 'src/app/services/stock/stock.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private stocks: StockService
+  ) { }
 
   ngOnInit(): void {
+    this.stocks.getStocksNames();
   }
 
 }

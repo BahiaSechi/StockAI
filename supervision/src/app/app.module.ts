@@ -4,12 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import {MenubarModule} from 'primeng/menubar';
-import {AccordionModule} from 'primeng/accordion';     //accordion and accordion tab
-import {MenuItem} from 'primeng/api';
+import { MenubarModule } from 'primeng/menubar';
+import { AccordionModule } from 'primeng/accordion';
 import { HomeComponent } from './component/home/home.component';
 import { TrainerComponent } from './component/trainer/trainer.component';
-import { StrategieComponent } from './component/strategie/strategie.component';                  //api
+import { StrategieComponent } from './component/strategie/strategie.component';
+import { SplitterModule } from 'primeng/splitter';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,9 @@ import { StrategieComponent } from './component/strategie/strategie.component'; 
     BrowserModule,
     AppRoutingModule,
     MenubarModule,
+    SplitterModule,
+    AccordionModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

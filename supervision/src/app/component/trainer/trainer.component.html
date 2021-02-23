@@ -1,1 +1,46 @@
-<p>trainer works!</p>
+<div class="root-trainer">
+    <div class="splitter-trainer">
+        <p-splitter [style]="{'height': '100%'}" [minSizes]="[30, 40]" styleClass="p-mb-5">
+            <ng-template>
+                <p-table [value]="stocks|async" [scrollable]="true" scrollHeight="50%">
+                    <ng-template pTemplate="caption">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                            Stocks
+                            <p-button icon="pi pi-refresh"></p-button>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>ratio</th>
+                            <th>Trade</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-product>
+                        <tr>
+                            <td><img [src]="'assets/stocksLogos/' + product.picture" [alt]="product.name" width="100" class="p-shadow-4" /></td>
+                            <td>{{product.name}}</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                            In total there are {{products ? products.length : 0 }} products.
+                        </div>
+                    </ng-template>
+                </p-table>
+                
+            </ng-template>
+            <ng-template>
+                <div class="p-col p-d-flex p-ai-center p-jc-center">
+                    Panel 2
+                </div>
+            </ng-template>
+        </p-splitter>
+    </div>
+</div>
