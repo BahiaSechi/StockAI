@@ -17,7 +17,7 @@ export class HttpService {
   getStock(abbreviation: string): Observable<Stock> {
     // avec un timestamp : new Date(1613031420000)
 
-    var ix = new BehaviorSubject<Stock>({name: "NAS-QUAD",
+    var ix = new BehaviorSubject<Stock>({name: "NASDAQ",
       abreviation: "IXIC",
       values: [ {timestamp: new Date().getTime() - 60000 * 3600 * 11, value: 10.0},
                 {timestamp: new Date().getTime() - 60000 * 3600 * 10, value: 11.0},
@@ -31,7 +31,7 @@ export class HttpService {
                 {timestamp: new Date().getTime() - 60000 * 3600 * 2, value: 13.5},
                 {timestamp: new Date().getTime() - 60000 * 3600 * 1, value: 15.0},
                 {timestamp: new Date().getTime() - 60000 * 3600 * 0, value: 16.5},],
-      picture: 'microsoft.png'});
+      picture: 'nasdaq.png'});
     var ap = new BehaviorSubject<Stock>({name: "Apple",
       abreviation: "AAPL",
       values: [ {timestamp: new Date().getTime() - 60000 * 3600 * 11, value: 10.0},
@@ -46,7 +46,7 @@ export class HttpService {
                 {timestamp: new Date().getTime() - 60000 * 3600 * 2, value: 13.5},
                 {timestamp: new Date().getTime() - 60000 * 3600 * 1, value: 15.0},
                 {timestamp: new Date().getTime() - 60000 * 3600 * 0, value: 16.5},],
-      picture: 'microsoft.png'});
+      picture: 'ap.png'});
     var am = new BehaviorSubject<Stock>({name: "Amazon",
       abreviation: "AMZN",
       values: [ {timestamp: new Date().getTime() - 60000 * 3600 * 11, value: 10.0},
@@ -61,7 +61,7 @@ export class HttpService {
                 {timestamp: new Date().getTime() - 60000 * 3600 * 2, value: 13.5},
                 {timestamp: new Date().getTime() - 60000 * 3600 * 1, value: 15.0},
                 {timestamp: new Date().getTime() - 60000 * 3600 * 0, value: 16.5},],
-      picture: 'microsoft.png'});
+      picture: 'amazon.png'});
     var fb = new BehaviorSubject<Stock>({name: "Facebook",
       abreviation: "FB",
       values: [ {timestamp: new Date().getTime() - 60000 * 3600 * 11, value: 10.0},
@@ -76,7 +76,7 @@ export class HttpService {
                 {timestamp: new Date().getTime() - 60000 * 3600 * 2, value: 13.5},
                 {timestamp: new Date().getTime() - 60000 * 3600 * 1, value: 15.0},
                 {timestamp: new Date().getTime() - 60000 * 3600 * 0, value: 16.5},],
-      picture: 'microsoft.png'});
+      picture: 'fb.png'});
     var go = new BehaviorSubject<Stock>({name: "Google",
       abreviation: "GOOGL",
       values: [ {timestamp: new Date().getTime() - 60000 * 3600 * 11, value: 10.0},
@@ -91,7 +91,7 @@ export class HttpService {
                 {timestamp: new Date().getTime() - 60000 * 3600 * 2, value: 13.5},
                 {timestamp: new Date().getTime() - 60000 * 3600 * 1, value: 15.0},
                 {timestamp: new Date().getTime() - 60000 * 3600 * 0, value: 16.5},],
-      picture: 'microsoft.png'});
+      picture: 'go.png'});
     var ms = new BehaviorSubject<Stock>({name: "Microsoft",
       abreviation: "MSFT",
       values: [ {timestamp: new Date().getTime() - 60000 * 3600 * 11, value: 10.0},

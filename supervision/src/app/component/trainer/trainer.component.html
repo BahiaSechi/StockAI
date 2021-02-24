@@ -2,39 +2,64 @@
     <div class="splitter-trainer">
         <p-splitter [style]="{'height': '100%'}" [minSizes]="[30, 40]" styleClass="p-mb-5">
             <ng-template>
-                <p-table [value]="stocks|async" [scrollable]="true" scrollHeight="50%">
-                    <ng-template pTemplate="caption">
-                        <div class="p-d-flex p-ai-center p-jc-between">
-                            Stocks
-                            <p-button icon="pi pi-refresh"></p-button>
-                        </div>
-                    </ng-template>
-                    <ng-template pTemplate="header">
-                        <tr>
-                            <th>Image</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>ratio</th>
-                            <th>Trade</th>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="body" let-product>
-                        <tr>
-                            <td><img [src]="'assets/stocksLogos/' + product.picture" [alt]="product.name" width="100" class="p-shadow-4" /></td>
-                            <td>{{product.name}}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </ng-template>
-                    <ng-template pTemplate="summary">
-                        <div class="p-d-flex p-ai-center p-jc-between">
-                            In total there are {{products ? products.length : 0 }} products.
-                        </div>
-                    </ng-template>
-                </p-table>
-                
+                <div class="table-trainer">
+
+                    <p-table [value]="stocks|async" [scrollable]="true" scrollHeight="flex">
+                        <ng-template pTemplate="caption">
+                            <div class="p-d-flex p-ai-center p-jc-between">
+                                Stocks
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>
+                                    <div class="centered"></div>
+                                </th>
+                                <th>
+                                    <div class="centered">Stock</div>
+                                </th>
+                                <th>
+                                    <div class="centered">Name</div>
+                                </th>
+                                <th>
+                                    <div class="centered">Price</div>
+                                </th>
+                                <th>
+                                    <div class="centered">Ratio</div>
+                                </th>
+                                <th>
+                                    <div class="centered">Trade</div>
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-product>
+                            <tr>
+                                <td>
+                                    <div class="centered">
+                                        <img [src]="'assets/stocksLogos/' + product.picture" [alt]="product.name"
+                                            width="25" class="p-shadow-4" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="centered">{{product.abreviation}}</div>
+                                </td>
+                                <td>
+                                    <div class="centered">{{product.name}}</div>
+                                </td>
+                                <td>
+                                    <div class="centered">{{product.values[product.values.length-1].value}}</div>
+                                </td>
+                                <td>
+                                    <div class="centered">To Come</div>
+                                </td>
+                                <td>
+                                    <div class="centered">Trade</div>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+
+                </div>
             </ng-template>
             <ng-template>
                 <div class="p-col p-d-flex p-ai-center p-jc-center">
