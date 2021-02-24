@@ -11,6 +11,7 @@ import { TrainerComponent } from './component/trainer/trainer.component';
 import { StrategieComponent } from './component/strategie/strategie.component';
 import { SplitterModule } from 'primeng/splitter';
 import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { TableModule } from 'primeng/table';
     MenubarModule,
     SplitterModule,
     AccordionModule,
-    TableModule
+    TableModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

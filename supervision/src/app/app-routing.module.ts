@@ -7,6 +7,7 @@ import { TrainerComponent } from './component/trainer/trainer.component';
 const routes: Routes = [
   {path:'home', component: HomeComponent},
   {path:'trainer', component: TrainerComponent},
+  {path:'trainer/:stockId', component: TrainerComponent},
   {path:'strategie', component: StrategieComponent},
 ];
 

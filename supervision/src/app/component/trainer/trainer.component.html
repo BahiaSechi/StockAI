@@ -53,7 +53,9 @@
                                     <div class="centered">To Come</div>
                                 </td>
                                 <td>
-                                    <div class="centered">Trade</div>
+                                    <div class="centered">
+                                        <p-button label="Trade" (onClick)="trade(product)"></p-button>
+                                    </div>
                                 </td>
                             </tr>
                         </ng-template>
@@ -62,8 +64,9 @@
                 </div>
             </ng-template>
             <ng-template>
-                <div class="p-col p-d-flex p-ai-center p-jc-center">
-                    Panel 2
+                <div class="p-col p-d-flex p-ai-center p-jc-center splitter-trainer-2">
+                    <div class="graph-trainer">a</div>
+                    <div class="trade-trainer">b</div>
                 </div>
             </ng-template>
         </p-splitter>
