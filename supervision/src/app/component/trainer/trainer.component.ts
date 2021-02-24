@@ -15,6 +15,7 @@ export class TrainerComponent implements OnInit {
   stocksName: BehaviorSubject<string[]>;
   stocks: BehaviorSubject<Stock[]>;
   stockName = new BehaviorSubject<string>(null);
+  stock = new BehaviorSubject<Stock>(null);
 
   constructor(
     private stocksService: StockService,
@@ -27,7 +28,6 @@ export class TrainerComponent implements OnInit {
     this.stocks = this.stocksService.getStocks();
     this.stocksName.subscribe(x => {
         x.forEach(element => {
-          console.log(element);
           this.stocksService.getStock(element);
         });
     });
@@ -35,6 +35,7 @@ export class TrainerComponent implements OnInit {
     this.route.params.subscribe(params =>{
       if (params['stockId'] != null && params['stockId'] != undefined && params['stockId'] != "")
         this.stockName.next(params['stockId']);
+        this.stock.next(this.stocks.getValue().find(x => params['stockId'] == x.abreviation));
     });
   }
 
