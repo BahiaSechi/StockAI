@@ -15,7 +15,6 @@ export class StockService {
     private http : HttpService,
     ) { }
 
-  
   getStocksNames() {
     this.http.getStocksNames().subscribe(names => {
       this.stocksName.next(names);
@@ -37,9 +36,11 @@ export class StockService {
       } else {
         tmp[idx] = stock;
       }
-      
+
       console.log(stock);
       this.stocks.next(tmp);
     });
   }
+
+
 }

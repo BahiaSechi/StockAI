@@ -11,13 +11,19 @@ import { TrainerComponent } from './component/trainer/trainer.component';
 import { StrategieComponent } from './component/strategie/strategie.component';
 import { SplitterModule } from 'primeng/splitter';
 import { TableModule } from 'primeng/table';
+import { PredictionComponent } from './component/prediction/prediction.component';
+
+import { ChartsModule } from "ng2-charts";
+import { LineChartComponent } from './component/line-chart/line-chart.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     TrainerComponent,
-    StrategieComponent
+    StrategieComponent,
+    PredictionComponent,
+    LineChartComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +31,8 @@ import { TableModule } from 'primeng/table';
     MenubarModule,
     SplitterModule,
     AccordionModule,
-    TableModule
+    TableModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
