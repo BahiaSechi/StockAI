@@ -1,5 +1,5 @@
 """
-file : indicators.py
+file : indicatorsYfinance.py
 desc : Retrieves stock market information from a specific day via yfinance, calculates the main indicators via talib.
 """
 
