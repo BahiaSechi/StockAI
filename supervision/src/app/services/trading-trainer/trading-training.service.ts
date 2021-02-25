@@ -5,5 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class TradingTrainingService {
 
+  private achat: Map<string, Achat[]>; // Abreviation d'action et quantité acheté
+
   constructor() { }
 }
