@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Stock } from 'src/app/model/stock';
 import { StockService } from 'src/app/services/stock/stock.service';
+import {InfluxService} from "../../services/influx/influx.service";
 
 @Component({
   selector: 'app-trainer',
@@ -20,7 +21,8 @@ export class TrainerComponent implements OnInit {
   constructor(
     private stocksService: StockService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private influxService: InfluxService
   ) { }
 
   ngOnInit(): void {
@@ -37,6 +39,9 @@ export class TrainerComponent implements OnInit {
         this.stockName.next(params['stockId']);
         this.stock.next(this.stocks.getValue().find(x => params['stockId'] == x.abreviation));
     });
+
+    this.influxService.queryAPI();
+
   }
 
   trade(s: Stock) {
