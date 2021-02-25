@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { Stock } from 'src/app/model/stock';
 import { HttpService } from '../http/http.service';
 
@@ -30,14 +30,12 @@ export class StockService {
     this.http.getStock(abbreviation).subscribe(stock => {
       var tmp = this.stocks.getValue();
       let idx = tmp.findIndex(x => x.abreviation==stock.abreviation)
-      console.log(idx);
       if (idx==-1) {
         tmp.push(stock);
       } else {
         tmp[idx] = stock;
       }
 
-      console.log(stock);
       this.stocks.next(tmp);
     });
   }
