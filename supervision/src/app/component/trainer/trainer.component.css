@@ -1,0 +1,40 @@
+.root-trainer {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.splitter-trainer {
+    width: 100%;
+    height: 100%;
+}
+
+.splitter-trainer-2 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+}
+
+.table-trainer {
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+}
+
+.graph-trainer {
+    width: 100%;
+    height: 65%;
+    background-color: rosybrown;
+}
+
+.trade-trainer {
+    width: 100%;
+    height: 35%;
+}
+
+.centered {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}

@@ -1,0 +1,76 @@
+<div class="root-trainer">
+    <div class="splitter-trainer">
+        <p-splitter [style]="{'height': '100%'}" [minSizes]="[30, 40]" styleClass="p-mb-5">
+            <ng-template>
+                <div class="table-trainer">
+
+                    <p-table [value]="stocks|async" [scrollable]="true" scrollHeight="flex">
+                        <ng-template pTemplate="caption">
+                            <div class="p-d-flex p-ai-center p-jc-between">
+                                Stocks
+                            </div>
+                        </ng-template>
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>
+                                    <div class="centered"></div>
+                                </th>
+                                <th>
+                                    <div class="centered">Stock</div>
+                                </th>
+                                <th>
+                                    <div class="centered">Name</div>
+                                </th>
+                                <th>
+                                    <div class="centered">Price</div>
+                                </th>
+                                <th>
+                                    <div class="centered">Ratio</div>
+                                </th>
+                                <th>
+                                    <div class="centered">Trade</div>
+                                </th>
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-product>
+                            <tr>
+                                <td>
+                                    <div class="centered">
+                                        <img [src]="'assets/stocksLogos/' + product.picture" [alt]="product.name"
+                                            width="25" class="p-shadow-4" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="centered">{{product.abreviation}}</div>
+                                </td>
+                                <td>
+                                    <div class="centered">{{product.name}}</div>
+                                </td>
+                                <td>
+                                    <div class="centered">{{product.values[product.values.length-1].value}}</div>
+                                </td>
+                                <td>
+                                    <div class="centered">To Come</div>
+                                </td>
+                                <td>
+                                    <div class="centered">
+                                        <p-button label="Trade" (onClick)="trade(product)"></p-button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </ng-template>
+            <ng-template>
+                <div class="p-col p-d-flex p-ai-center p-jc-center splitter-trainer-2">
+                    <div class="graph-trainer">
+                        <app-line-chart [getterBroker]="stock|async"></app-line-chart>
+                    </div>
+                    <div class="trade-trainer">b</div>
+
+                </div>
+            </ng-template>
+        </p-splitter>
+    </div>
+</div>

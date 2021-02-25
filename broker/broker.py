@@ -18,7 +18,7 @@ def my_custom_close_handler(ws):
 
 
 def main():
-    key = '7hWfh6VQ34wKWL3BjsnVDr_H0VpB5kNh'
+    key = 'VvDfdKpDvfONVDEl2Q_TrICPinUXn9Jd'
     my_client = WebSocketClient(STOCKS_CLUSTER, key, my_custom_process_message)
     my_client.run_async()
 
