@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Stock } from 'src/app/model/stock';
+import { HttpClient } from "@angular/common/http";
+import querystring from "querystring";
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
-
   constructor(
+    private http : HttpClient
   ) { }
 
   getStocksNames(): Observable<string[]> {
@@ -15,8 +17,14 @@ export class HttpService {
     return names;
   }
 
-  getMachin() {
-    //this.http.get("http://51.210.180.105:8086/query?db=stockai");
+  getHttp() {
+    let queryS = querystring.stringify({
+      db: 'stockai',
+      q: 'SELECT value FROM "stockai"."autogen"."high" WHERE "name"=\'AAPL\';'
+    });
+    this.http.get("http://51.210.180.105:8086/query?"+ queryS).subscribe(o => {
+      console.log("Inside get HTTP", o);
+    });
   }
 
   getStock(abbreviation: string): Observable<Stock> {

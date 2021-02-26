@@ -18,6 +18,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { ChartsModule } from "ng2-charts";
 import { LineChartComponent } from './component/line-chart/line-chart.component';
 
+import { HttpClientModule} from "@angular/common/http";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +38,8 @@ import { LineChartComponent } from './component/line-chart/line-chart.component'
     TableModule,
     ButtonModule,
     ChartsModule,
-    InputNumberModule
+    InputNumberModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

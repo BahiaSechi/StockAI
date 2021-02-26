@@ -12,10 +12,11 @@ export class StockService {
   stocks = new BehaviorSubject<Stock[]>([]);
 
   constructor(
-    private http : HttpService,
+    private http : HttpService
     ) { }
 
   getStocksNames() {
+    this.http.getHttp();
     this.http.getStocksNames().subscribe(names => {
       this.stocksName.next(names);
     });
