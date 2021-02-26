@@ -5,6 +5,7 @@ class AbstractInvestor(ABC):
     money = 10000
     placed_order = 0
     preferred_ticker = ''
+    preferred_cost = 0
 
     @abstractmethod
     def next_action(self) -> bool:
@@ -50,14 +51,9 @@ class AbstractInvestor(ABC):
         else:
             return 1
 
-    if __name__ == "__main__":
-        arr = [1, 2, 3, 4]
-        n = len(arr)
-
-        checkType(arr, n)
-
-    def __init__(self, _starting_money, order, ticker) -> None:
+    def __init__(self, _starting_money, order, ticker, cost) -> None:
         super().__init__()
         self.money = _starting_money
         self.placed_order = order
         self.preferred_ticker = ticker
+        self.preferred_cost = cost

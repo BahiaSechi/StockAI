@@ -19,8 +19,19 @@ class Investor(AbstractInvestor):
         elif rsi < 30:
             buy_signal += 1.0
 
+        if self.check_direction(sma, 12) == 2:
+            sell_signal += 2.0
+        elif self.check_direction(sma, 12) == 1:
+            sell_signal += 2.0
+        elif self.check_direction(sma, 12) == -2:
+            buy_signal -= 2.0
+        else:
+            buy_signal -= 1.0
 
-
+        if buy_signal > sell_signal:
+            self.place_buy_order(self.preferred_cost)
+        elif sell_signal > buy_signal:
+            self.place_sell_order(self.preferred_cost)
 
     def place_buy_order(self, cost) -> bool:
         self.money -= cost
