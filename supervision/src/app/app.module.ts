@@ -17,6 +17,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
 
 import { ChartsModule } from "ng2-charts";
 import { LineChartComponent } from './component/line-chart/line-chart.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpInterceptorService } from './services/http-interceptor/http-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,7 @@ import { LineChartComponent } from './component/line-chart/line-chart.component'
     ChartsModule,
     InputNumberModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
