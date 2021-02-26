@@ -20,8 +20,13 @@ class AbstractInvestor(ABC):
         ...
 
     def start_investing(self):
+        file = open("stats.txt", "w")
+
         while self.money > 0:
             self.next_action()
+            file.writelines(
+                [str(self.money), str(self.placed_order), str(self.preferred_ticker), str(self.preferred_cost)]
+            )
 
     # Function to check the type of the array
     def check_direction(arr, n):
