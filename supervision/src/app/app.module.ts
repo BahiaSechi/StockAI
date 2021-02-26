@@ -13,6 +13,7 @@ import { SplitterModule } from 'primeng/splitter';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { PredictionComponent } from './component/prediction/prediction.component';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 import { ChartsModule } from "ng2-charts";
 import { LineChartComponent } from './component/line-chart/line-chart.component';
@@ -34,7 +35,8 @@ import { LineChartComponent } from './component/line-chart/line-chart.component'
     AccordionModule,
     TableModule,
     ButtonModule,
-    ChartsModule
+    ChartsModule,
+    InputNumberModule
   ],
   providers: [],
   bootstrap: [AppComponent]

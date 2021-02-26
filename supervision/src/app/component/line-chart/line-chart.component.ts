@@ -12,7 +12,7 @@ import {BehaviorSubject} from "rxjs";
 export class LineChartComponent implements OnInit {
 
   @Input()
-  public getterBroker: BehaviorSubject<Stock>;
+  public getterBroker = new BehaviorSubject<Stock>(null);
 
   public lineChartData = new BehaviorSubject<ChartDataSets[]>([]);
   public lineChartOptions = {
