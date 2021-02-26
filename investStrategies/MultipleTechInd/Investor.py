@@ -8,7 +8,9 @@ from ..AbstractInvestor import AbstractInvestor
 class Investor(AbstractInvestor):
     def next_action(self) -> bool:
         # close = get close prices
-        close = get_data(self.preferred_ticker, 14, PriceType.CLOSE).values.flatten('F')
+        close = get_data(self.preferred_ticker, 14, PriceType.CLOSE)
+        print(close)
+        close = close.values.flatten('F')
         rsi = talib.RSI(close, timeperiod=14)
         sma = talib.MACD(close, 12, 26, 9)
 

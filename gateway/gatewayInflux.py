@@ -13,12 +13,18 @@ client = DataFrameClient(host='51.210.180.105', port=8086)
 
 
 def get_data(ticker_name: str, days: int, type: PriceType) -> DataFrame:
-    date = datetime.now() - timedelta(seconds=days)
+    date = datetime.now() - timedelta(minutes=days)
+    date = date.isoformat() + "Z"
 
     dfs = client.query(f'''
     SELECT value 
-    FROM "stockai"."autogen".{type.value}
-    WHERE time > \'{date}\' 
-    AND ("name"=\'{ticker_name}\')''')
+    FROM "stockai"."autogen"."{type.value}"
+    WHERE 
+--     time > \'{date}\' 
+--     AND 
+    "name"=\'{ticker_name}\'
+    ORDER BY time desc 
+    LIMIT {days}''')
 
-    return dfs[ticker_name]
+    print(dfs)
+    return dfs[type.value]

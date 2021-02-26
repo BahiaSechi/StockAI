@@ -7,7 +7,7 @@ import requests
 
 headers = ["timestamp", "name", "open", "close", "high", "low", "volume"]
 
-with open("/home/mateo/Documents/Work/Dev/ensicaen/ia/stockai/broker/big_five_stocks_reduced.csv", newline='') as stock_data:
+with open("big_five_stocks_reduced.csv", newline='') as stock_data:
     reader = csv.reader(stock_data, delimiter=',')
     i = 0
     for row in reader:
@@ -23,6 +23,6 @@ with open("/home/mateo/Documents/Work/Dev/ensicaen/ia/stockai/broker/big_five_st
             r = requests.post("http://51.210.180.105:8086/write?db=stockai&u=manquiche&p=manquiche", data=data)
             if not r.ok:
                 print("Error: " + r.text)
-            sleep(0.5)
+            sleep(0.2)
 
         i += 1
