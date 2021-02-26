@@ -20,7 +20,7 @@ class AbstractInvestor(ABC):
         ...
 
     def start_investing(self):
-        while True:
+        while self.money > 0:
             self.next_action()
 
     # Function to check the type of the array
