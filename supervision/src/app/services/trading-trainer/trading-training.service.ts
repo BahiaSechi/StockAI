@@ -57,4 +57,8 @@ export class TradingTrainingService {
       this.walletWorth.next(totalValue);
     });
   }
+
+  getWalletWorth() {
+    return this.walletWorth;
+  }
 }

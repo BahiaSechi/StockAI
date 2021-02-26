@@ -4,6 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Stock } from 'src/app/model/stock';
 import { StockService } from 'src/app/services/stock/stock.service';
+import { TradingTrainingService } from 'src/app/services/trading-trainer/trading-training.service';
 import {InfluxService} from "../../services/influx/influx.service";
 
 @Component({
@@ -17,8 +18,11 @@ export class TrainerComponent implements OnInit {
   stocks: BehaviorSubject<Stock[]>;
   stockName = new BehaviorSubject<string>(null);
   stock = new BehaviorSubject<Stock>(null);
+  buyingPrice: number = 0;
+  walletWorth = new BehaviorSubject<number>(100);
 
   constructor(
+    private trainer: TradingTrainingService,
     private stocksService: StockService,
     private router: Router,
     private route: ActivatedRoute,
@@ -28,6 +32,7 @@ export class TrainerComponent implements OnInit {
   ngOnInit(): void {
     this.stocksName = this.stocksService.getStocksNames();
     this.stocks = this.stocksService.getStocks();
+
     this.stocksName.subscribe(x => {
         x.forEach(element => {
           this.stocksService.getStock(element);
@@ -38,6 +43,10 @@ export class TrainerComponent implements OnInit {
       if (params['stockId'] != null && params['stockId'] != undefined && params['stockId'] != "")
         this.stockName.next(params['stockId']);
         this.stock.next(this.stocks.getValue().find(x => params['stockId'] == x.abreviation));
+    });
+
+    this.trainer.getWalletWorth().subscribe(worth => {
+      this.walletWorth.next(worth);
     });
 
     this.influxService.queryAPI();

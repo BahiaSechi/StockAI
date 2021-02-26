@@ -67,7 +67,27 @@
                     <div class="graph-trainer">
                         <app-line-chart [getterBroker]="stock"></app-line-chart>
                     </div>
-                    <div class="trade-trainer">b</div>
+                    <div class="trade-trainer">
+                        <div>Wallet worth : {{this.walletWorth|async}}</div>
+                        <div class="buying-selling">
+                            <div class="buying-stock">
+                                <!--
+                                <label for="stacked">Buying stock (amount in €) :</label>
+                                <p-inputNumber [(ngModel)]="buyingPrice" [showButtons]="true" inputId="stacked"
+                                    mode="currency" currency="EUR" locale="de-DE">
+                                </p-inputNumber>
+                                -->
+                            </div>
+                            <div class="selling-stock">
+                                <!--
+                                <label for="stacked">Selling stock (amount in €) :</label>
+                                <p-inputNumber [(ngModel)]="buyingPrice" [showButtons]="true" inputId="stacked"
+                                    mode="currency" currency="EUR" locale="de-DE">
+                                </p-inputNumber>
+                                -->
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </ng-template>

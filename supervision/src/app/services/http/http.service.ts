@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Stock } from 'src/app/model/stock';
-import { HttpClient} from '@angular/common/http'
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +8,6 @@ import { HttpClient} from '@angular/common/http'
 export class HttpService {
 
   constructor(
-    private http: HttpClient
   ) { }
 
   getStocksNames(): Observable<string[]> {
@@ -18,7 +16,7 @@ export class HttpService {
   }
 
   getMachin() {
-    this.http.get("http://51.210.180.105:8086/query?db=stockai",);
+    //this.http.get("http://51.210.180.105:8086/query?db=stockai");
   }
 
   getStock(abbreviation: string): Observable<Stock> {
