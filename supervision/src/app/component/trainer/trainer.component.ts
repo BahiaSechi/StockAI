@@ -48,9 +48,6 @@ export class TrainerComponent implements OnInit {
     this.trainer.getWalletWorth().subscribe(worth => {
       this.walletWorth.next(worth);
     });
-
-    this.influxService.queryAPI();
-
   }
 
   trade(s: Stock) {

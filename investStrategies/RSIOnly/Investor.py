@@ -1,17 +1,20 @@
-from ..AbstractInvestor import AbstractInvestor
 import talib
+
+from gateway.PriceType import PriceType
+from gateway.gatewayInflux import get_data
+from ..AbstractInvestor import AbstractInvestor
 
 
 class Investor(AbstractInvestor):
     def next_action(self) -> bool:
         # close = get close prices
-        close = [0, 0, 0, 0, 0, 0]
+        close = get_data(self.preferred_ticker, 14, PriceType.CLOSE).values.flatten('F')
         rsi = talib.RSI(close, timeperiod=14)
 
         if rsi > 70:
-            self.place_buy_order(close)
-        else:
             self.place_sell_order(close)
+        elif rsi < 30:
+            self.place_buy_order(close)
 
     def place_buy_order(self, cost) -> bool:
         self.money -= cost
