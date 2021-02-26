@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 from influxdb import DataFrameClient
 from pandas import DataFrame
 
-from gateway.PriceType import PriceType
+from PriceType import PriceType
 
 client = DataFrameClient(host='51.210.180.105', port=8086)
 
