@@ -18,6 +18,44 @@ class AbstractInvestor(ABC):
     def place_sell_order(self, cost) -> bool:
         ...
 
+    def start_investing(self):
+        while True:
+            self.next_action()
+
+    # Function to check the type of the array
+    def check_direction(arr, n):
+
+        # If the first two and the last two elements
+        # of the array are in increasing order
+        if (arr[0] <= arr[1] and
+                arr[n - 2] <= arr[n - 1]):
+            return 2
+
+            # If the first two and the last two elements
+        # of the array are in decreasing order
+        elif (arr[0] >= arr[1] and
+              arr[n - 2] >= arr[n - 1]):
+            return -2
+
+            # If the first two elements of the array are in
+        # increasing order and the last two elements
+        # of the array are in decreasing order
+        elif (arr[0] <= arr[1] and
+              arr[n - 2] >= arr[n - 1]):
+            return -1
+
+            # If the first two elements of the array are in
+        # decreasing order and the last two elements
+        # of the array are in increasing order
+        else:
+            return 1
+
+    if __name__ == "__main__":
+        arr = [1, 2, 3, 4]
+        n = len(arr)
+
+        checkType(arr, n)
+
     def __init__(self, _starting_money, order, ticker) -> None:
         super().__init__()
         self.money = _starting_money
