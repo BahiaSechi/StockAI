@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 from influxdb import DataFrameClient
 from pandas import DataFrame
 
-from PriceType import PriceType
+from gateway.PriceType import PriceType
 
 client = DataFrameClient(host='51.210.180.105', port=8086)
 
@@ -26,5 +26,4 @@ def get_data(ticker_name: str, days: int, type: PriceType) -> DataFrame:
     ORDER BY time desc 
     LIMIT {days}''')
 
-    print(dfs)
     return dfs[type.value]

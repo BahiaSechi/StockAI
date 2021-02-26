@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from time import sleep
 
 
 class AbstractInvestor(ABC):
@@ -20,16 +21,18 @@ class AbstractInvestor(ABC):
         ...
 
     def start_investing(self):
-        file = open("stats.txt", "w")
-
-        while self.money > 0:
-            self.next_action()
-            file.writelines(
-                [str(self.money), str(self.placed_order), str(self.preferred_ticker), str(self.preferred_cost)]
-            )
+        with open("stats.txt", "w") as file:
+            while self.money > 0:
+                self.next_action()
+                print([str(self.money), str(self.placed_order), str(self.preferred_ticker), str(self.preferred_cost)])
+                file.writelines(
+                    [str(self.money) + ",", str(self.placed_order) + ",", str(self.preferred_ticker) + ",", str(self.preferred_cost) + "\n"]
+                )
+                file.flush()
+                sleep(1)
 
     # Function to check the type of the array
-    def check_direction(arr, n):
+    def check_direction(self, arr, n):
 
         # If the first two and the last two elements
         # of the array are in increasing order
