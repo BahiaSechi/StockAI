@@ -13,7 +13,7 @@ client = DataFrameClient(host='51.210.180.105', port=8086)
 
 
 def get_data(ticker_name: str, days: int, type: PriceType) -> DataFrame:
-    date = datetime.now() - timedelta(days=days)
+    date = datetime.now() - timedelta(seconds=days)
 
     dfs = client.query(f'''
     SELECT value 
