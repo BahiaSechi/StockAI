@@ -1,17 +1,24 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Stock } from 'src/app/model/stock';
+import { HttpClient} from '@angular/common/http'
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
 
-  constructor() { }
+  constructor(
+    private http: HttpClient
+  ) { }
 
   getStocksNames(): Observable<string[]> {
     var names = new BehaviorSubject<string[]>(['IXIC','AAPL','AMZN','FB','GOOGL','MSFT']);
     return names;
+  }
+
+  getMachin() {
+    this.http.get("http://51.210.180.105:8086/query?db=stockai",);
   }
 
   getStock(abbreviation: string): Observable<Stock> {
