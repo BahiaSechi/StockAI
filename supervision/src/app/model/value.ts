@@ -1,4 +1,4 @@
 export interface Value {
-    timestamp: number;
-    value: number;
+  timestamp: number;
+  value: number;
 }
