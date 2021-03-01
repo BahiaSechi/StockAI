@@ -11,6 +11,9 @@ class Investor(AbstractInvestor):
         close = get_data(self.preferred_ticker, 50, PriceType.CLOSE).values.flatten('F')
         rsi = talib.RSI(close, timeperiod=14)
         sma, smasig, smahist = talib.MACD(close, 12, 26, 9)
+        print(rsi)
+        rsi = [x for x in rsi if str(x) != 'nan']
+        print(max(rsi), " [", sma, "]", "\n")
 
         buy_signal = 0.0
         sell_signal = 0.0
@@ -23,6 +26,10 @@ class Investor(AbstractInvestor):
             sell_signal += 2.0
         elif self.check_direction(sma, 12) == -2:
             buy_signal -= 2.0
+        elif self.check_direction(sma, 12) == 1:
+            sell_signal += 1.0
+        else:
+            buy_signal -= 1.0
 
         if buy_signal > sell_signal and self.money > self.preferred_cost:
             self.place_buy_order(self.preferred_cost)
