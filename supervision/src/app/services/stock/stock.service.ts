@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import { Stock } from 'src/app/model/stock';
 import { HttpService } from '../http/http.service';
 
@@ -12,8 +12,9 @@ export class StockService {
   stocks = new BehaviorSubject<Stock[]>([]);
 
   constructor(
-    private http : HttpService
-    ) { }
+    private http: HttpService
+  ) {
+  }
 
   getStocksNames() {
     this.http.getStocksNames().subscribe(names => {
@@ -31,18 +32,50 @@ export class StockService {
     // });
     this.http.getHttp(abbreviation).subscribe(o => {
       let valuesArr = [];
-      o.results[0].series[0].values.forEach(vArray  => {
+      o.results[0].series[0].values.forEach(vArray => {
         valuesArr.push({timestamp: vArray[0], value: vArray[1]});
       });
+      
       let tmp = this.stocks.getValue();
-      let idx = tmp.findIndex(x => x.abreviation==abbreviation);
-      let stock : Stock = {abreviation: abbreviation, name: "Name", picture: "ap.png", values: valuesArr}
-      if (idx==-1) {
+      let idx = tmp.findIndex(x => x.abreviation == abbreviation);
+      let stock: Stock = this.getStockInfos(abbreviation);
+      stock.values = valuesArr;
+
+      if (idx == -1) {
         tmp.push(stock);
       } else {
         tmp[idx] = stock;
       }
       this.stocks.next(tmp);
     });
+  }
+
+  getStockInfos(abbreviation: string): Stock {
+    // avec un timestamp : new Date(1613031420000)
+
+    let ix = {name: "NASDAQ", abreviation: "IXIC", values: [], picture: 'nasdaq.png'};
+    let ap = {name: "Apple", abreviation: "AAPL", values: [], picture: 'ap.png'};
+    let am = {name: "Amazon", abreviation: "AMZN", values: [], picture: 'amazon.png'};
+    let fb = {name: "Facebook", abreviation: "FB", values: [], picture: 'fb.png'};
+    let go = {name: "Google", abreviation: "GOOGL", values: [], picture: 'go.png'};
+    let ms = {name: "Microsoft", abreviation: "MSFT", values: [], picture: 'microsoft.png'};
+
+    switch (abbreviation) {
+      case 'IXIC':
+        return ix;
+      case 'AAPL':
+        return ap;
+      case 'AMZN':
+        return am;
+      case 'FB':
+        return fb;
+      case 'GOOGL':
+        return go;
+      case 'MSFT':
+        return ms;
+      default:
+        break;
+    }
+    return ix;
   }
 }

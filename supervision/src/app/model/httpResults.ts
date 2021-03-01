@@ -1,5 +1,3 @@
-import {Value} from "./value";
-
 export interface Series {
   name: string;
   columns: string[];
