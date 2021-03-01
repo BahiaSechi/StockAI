@@ -1,4 +1,5 @@
 <div class="root-trainer">
+    <p-toast></p-toast>
     <div class="splitter-trainer">
         <p-splitter [style]="{'height': '100%'}" [minSizes]="[30, 40]" styleClass="p-mb-5">
             <ng-template>
@@ -68,23 +69,21 @@
                         <app-line-chart [getterBroker]="stock"></app-line-chart>
                     </div>
                     <div class="trade-trainer">
-                        <div>Wallet worth : {{this.walletWorth|async}}</div>
+                        <div>Wallet worth : {{this.walletWorth|async}}€</div>
                         <div class="buying-selling">
-                            <div class="buying-stock">
-                                <!--
+                            <div class="selling-buying-stock">
                                 <label for="stacked">Buying stock (amount in €) :</label>
                                 <p-inputNumber [(ngModel)]="buyingPrice" [showButtons]="true" inputId="stacked"
                                     mode="currency" currency="EUR" locale="de-DE">
                                 </p-inputNumber>
-                                -->
+                                <p-button label="Buy"></p-button>
                             </div>
-                            <div class="selling-stock">
-                                <!--
+                            <div class="selling-buying-stock">
                                 <label for="stacked">Selling stock (amount in €) :</label>
-                                <p-inputNumber [(ngModel)]="buyingPrice" [showButtons]="true" inputId="stacked"
+                                <p-inputNumber [(ngModel)]="sellingPrice" [showButtons]="true" inputId="stacked"
                                     mode="currency" currency="EUR" locale="de-DE">
                                 </p-inputNumber>
-                                -->
+                                <p-button label="Sell" (click)="sell()"></p-button>
                             </div>
                         </div>
                     </div>

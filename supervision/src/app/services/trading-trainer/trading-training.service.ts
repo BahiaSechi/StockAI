@@ -9,7 +9,7 @@ import { StockService } from '../stock/stock.service';
 })
 export class TradingTrainingService {
 
-  private walletWorth = new BehaviorSubject<number>(100);
+  private walletWorth = new BehaviorSubject<number>(100.3);
   private wallet = new Map<string, number>();
   private purchase = new Map<string, Purchase[]>(); // Abreviation d'action et details d'achat
   private fiat = "FIAT";
