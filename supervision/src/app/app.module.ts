@@ -20,8 +20,6 @@ import { LineChartComponent } from './component/line-chart/line-chart.component'
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpInterceptorService } from './services/http-interceptor/http-interceptor.service';
 
-import { HttpClientModule} from "@angular/common/http";
-
 @NgModule({
   declarations: [
     AppComponent,
