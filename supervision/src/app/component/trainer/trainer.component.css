@@ -32,22 +32,22 @@
     width: 100%;
     height: 35%;
     flex-direction: column;
-    background-color: aqua;
     padding: 10px;
 }
 
 .buying-selling {
+    display: flex;
+    flex-direction: row;
     width: 100%;
     height: 100%;
-    background-color: blue;
 }
 
-.buying-stock {
-
-}
-
-.selling-stock {
-
+.selling-buying-stock {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height:100%;
+    padding: 10px;
 }
 
 

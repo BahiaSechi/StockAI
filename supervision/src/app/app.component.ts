@@ -2,13 +2,16 @@ import { Component } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'supervision';
-  items: MenuItem[];
+    title = 'supervision';
+    items: MenuItem[];
+    
+    constructor (
+    ) {}
 
     ngOnInit() {
         this.items = [
@@ -26,8 +29,8 @@ export class AppComponent {
                 label: 'Trading strategies',
                 icon: 'pi pi-credit-card',
                 items: [
-                    {label: 'Strat 1', routerLink: 'strategie'},
-                    {label: 'Strat 2', routerLink: 'strategie'}
+                    { label: 'Strat 1', routerLink: 'strategie' },
+                    { label: 'Strat 2', routerLink: 'strategie' }
                 ]
             }
         ];

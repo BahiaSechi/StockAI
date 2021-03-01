@@ -14,6 +14,8 @@ import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { PredictionComponent } from './component/prediction/prediction.component';
 import { InputNumberModule } from 'primeng/inputnumber';
+import { ToastModule } from 'primeng/toast';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { ChartsModule } from "ng2-charts";
 import { LineChartComponent } from './component/line-chart/line-chart.component';
@@ -39,7 +41,9 @@ import { HttpInterceptorService } from './services/http-interceptor/http-interce
     ButtonModule,
     ChartsModule,
     InputNumberModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastModule,
+    BrowserAnimationsModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true }],
   bootstrap: [AppComponent]
