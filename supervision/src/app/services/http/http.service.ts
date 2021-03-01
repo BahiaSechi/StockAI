@@ -9,22 +9,28 @@ import querystring from "querystring";
 })
 export class HttpService {
   constructor(
-    private http : HttpClient
-  ) { }
+    private http: HttpClient
+  ) {
+  }
 
   getStocksNames(): Observable<string[]> {
-    let names = new BehaviorSubject<string[]>(['IXIC','AAPL','AMZN','FB','GOOGL','MSFT']);
+    let names = new BehaviorSubject<string[]>(['IXIC', 'AAPL', 'AMZN', 'FB', 'GOOGL', 'MSFT']);
     return names;
   }
 
-  getHttp(abreviation: string) : Observable<any> {
+  getHttp(abreviation: string): Observable<any> {
     let queryS = querystring.stringify({
       db: 'stockai',
-      q: 'SELECT value FROM "stockai"."autogen"."high" WHERE "name"=\''+abreviation+'\';'
+      q: 'SELECT value FROM "stockai"."autogen"."high" WHERE "name"=\'' + abreviation + '\';'
     });
-    return this.http.get("http://51.210.180.105:8086/query?"+ queryS);
-       //.subscribe((o: httpResults) => {
-    //   console.log("Inside get HTTP", o);
-    //   console.log("Results", o.results[0].series[0].values[0][0]);
+    return this.http.get("http://51.210.180.105:8086/query?" + queryS);
+  }
+
+    getHttpSecond(abreviation: string) : Observable<any> {
+      let queryS = querystring.stringify({
+        db: 'stockai',
+        q: 'SELECT value FROM "stockai"."autogen"."high" WHERE "name"=\'' + abreviation + '\' ORDER BY time DESC LIMIT 1;'
+      });
+      return this.http.get("http://51.210.180.105:8086/query?" + queryS);
     }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, interval, Subscription} from 'rxjs';
 import { Stock } from 'src/app/model/stock';
 import { HttpService } from '../http/http.service';
 
@@ -10,6 +10,7 @@ export class StockService {
 
   stocksName = new BehaviorSubject<string[]>([]);
   stocks = new BehaviorSubject<Stock[]>([]);
+  subscription: Subscription;
 
   constructor(
     private http: HttpService
@@ -28,14 +29,14 @@ export class StockService {
   }
 
   getStock(abbreviation: string) {
-    // this.http.getStock(abbreviation).subscribe(stock => {
-    // });
+    const source = interval(1000);
+
     this.http.getHttp(abbreviation).subscribe(o => {
       let valuesArr = [];
       o.results[0].series[0].values.forEach(vArray => {
         valuesArr.push({timestamp: vArray[0], value: vArray[1]});
       });
-      
+
       let tmp = this.stocks.getValue();
       let idx = tmp.findIndex(x => x.abreviation == abbreviation);
       let stock: Stock = this.getStockInfos(abbreviation);
@@ -47,6 +48,26 @@ export class StockService {
         tmp[idx] = stock;
       }
       this.stocks.next(tmp);
+    });
+
+    this.subscription = source.subscribe(val => {
+      this.http.getHttpSecond(abbreviation).subscribe(o => {
+        let valuesArr = [];
+        valuesArr.push({timestamp: o.results[0].series[0].values[0][0], value: o.results[0].series[0].values[0][1]});
+
+        let tmp = this.stocks.getValue();
+        let idx = tmp.findIndex(x => x.abreviation == abbreviation);
+        let stock: Stock = tmp[idx];
+
+        stock.values.push(valuesArr[0]);
+
+        if (idx == -1) {
+          tmp.push(stock);
+        } else {
+          tmp[idx] = stock;
+        }
+        this.stocks.next(tmp);
+      });
     });
   }
 
@@ -78,4 +99,9 @@ export class StockService {
     }
     return ix;
   }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
 }
