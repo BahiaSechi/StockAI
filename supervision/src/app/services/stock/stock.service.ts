@@ -16,7 +16,6 @@ export class StockService {
     ) { }
 
   getStocksNames() {
-    this.http.getHttp();
     this.http.getStocksNames().subscribe(names => {
       this.stocksName.next(names);
     });
@@ -28,18 +27,22 @@ export class StockService {
   }
 
   getStock(abbreviation: string) {
-    this.http.getStock(abbreviation).subscribe(stock => {
-      var tmp = this.stocks.getValue();
-      let idx = tmp.findIndex(x => x.abreviation==stock.abreviation)
+    // this.http.getStock(abbreviation).subscribe(stock => {
+    // });
+    this.http.getHttp(abbreviation).subscribe(o => {
+      let valuesArr = [];
+      o.results[0].series[0].values.forEach(vArray  => {
+        valuesArr.push({timestamp: vArray[0], value: vArray[1]});
+      });
+      let tmp = this.stocks.getValue();
+      let idx = tmp.findIndex(x => x.abreviation==abbreviation);
+      let stock : Stock = {abreviation: abbreviation, name: "Name", picture: "ap.png", values: valuesArr}
       if (idx==-1) {
         tmp.push(stock);
       } else {
         tmp[idx] = stock;
       }
-
       this.stocks.next(tmp);
     });
   }
-
-
 }

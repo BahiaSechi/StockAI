@@ -17,15 +17,16 @@ export class HttpService {
     return names;
   }
 
-  getHttp() {
+  getHttp(abreviation: string) : Observable<any> {
     let queryS = querystring.stringify({
       db: 'stockai',
-      q: 'SELECT value FROM "stockai"."autogen"."high" WHERE "name"=\'AAPL\';'
+      q: 'SELECT value FROM "stockai"."autogen"."high" WHERE "name"=\''+abreviation+'\';'
     });
-    this.http.get("http://51.210.180.105:8086/query?"+ queryS).subscribe(o => {
-      console.log("Inside get HTTP", o);
-    });
-  }
+    return this.http.get("http://51.210.180.105:8086/query?"+ queryS);
+       //.subscribe((o: httpResults) => {
+    //   console.log("Inside get HTTP", o);
+    //   console.log("Results", o.results[0].series[0].values[0][0]);
+    }
 
   getStock(abbreviation: string): Observable<Stock> {
     // avec un timestamp : new Date(1613031420000)
