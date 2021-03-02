@@ -23,6 +23,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpInterceptorService } from './services/http-interceptor/http-interceptor.service';
 import {PanelModule} from "primeng/panel";
 import {CardModule} from "primeng/card";
+import { ComparaisonComponent } from './component/comparaison/comparaison.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {CardModule} from "primeng/card";
     TrainerComponent,
     StrategieComponent,
     PredictionComponent,
-    LineChartComponent
+    LineChartComponent,
+    ComparaisonComponent
   ],
   imports: [
     BrowserModule,
