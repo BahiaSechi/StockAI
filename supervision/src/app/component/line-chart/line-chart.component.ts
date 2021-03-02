@@ -49,9 +49,6 @@ export class LineChartComponent implements OnInit {
     }
   ];
   public lineChartLegend = true;
-  public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
-  }
 
   constructor() { }
 
@@ -61,8 +58,6 @@ export class LineChartComponent implements OnInit {
 
       if (myBroker == null || myBroker.length == 0) return;
 
-      console.log("mybroker", myBroker);
-
       let temp = [];
 
       myBroker.forEach(v => {
@@ -71,7 +66,6 @@ export class LineChartComponent implements OnInit {
         v.values.forEach(val => {
           myValues.push({y: val.value, x: new Date(val.timestamp)});
         });
-        console.log("Values: ", myValues);
         temp.push({data: myValues, label: v.abreviation});
       });
       this.lineChartData.next(temp);

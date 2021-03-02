@@ -49,7 +49,6 @@ export class TrainerComponent implements OnInit {
         let temp = [];
         temp.push(this.stocks.getValue().find(x => params['stockId'] == x.abreviation));
         this.stock.next(temp);
-        console.log(this.stock.value);
       }
     });
 
@@ -63,7 +62,6 @@ export class TrainerComponent implements OnInit {
   }
 
   isPriceOk(price: number): boolean {
-    console.log(price, price != null, price != undefined, price > 0);
     return  price != null && price != undefined && price > 0;
   }
 
