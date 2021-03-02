@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from time import sleep
+import json
 
 
 class AbstractInvestor(ABC):
@@ -23,41 +24,30 @@ class AbstractInvestor(ABC):
     def start_investing(self):
         with open("stats.txt", "w") as file:
             while self.money > 0:
-                self.next_action()
-                print([str(self.money), str(self.placed_order), str(self.preferred_ticker), str(self.preferred_cost)])
+                price = self.next_action()
+
+                data = {'money': self.money, 'placed_order': self.placed_order,
+                        'preferred_ticker': self.preferred_ticker, 'stock_value': self.placed_order * price}
+
+                print(data)
                 file.writelines(
-                    [str(self.money) + ",", str(self.placed_order) + ",", str(self.preferred_ticker) + ",", str(self.preferred_cost) + "\n"]
+                    [str(self.money) + ",", str(self.placed_order) + ",", str(self.preferred_ticker) + ",",
+                     str(self.placed_order * price) + "\n"]
                 )
                 file.flush()
                 sleep(1)
 
-    # Function to check the type of the array
-    def check_direction(self, arr, n):
+    def list_convergence(self, list):
+        result = 0
+        oldX = 0
 
-        # If the first two and the last two elements
-        # of the array are in increasing order
-        if (arr[0] <= arr[1] and
-                arr[n - 2] <= arr[n - 1]):
-            return 2
+        for x in list:
+            if x > oldX:
+                result += 1
+            elif x < oldX:
+                result -= 1
 
-            # If the first two and the last two elements
-        # of the array are in decreasing order
-        elif (arr[0] >= arr[1] and
-              arr[n - 2] >= arr[n - 1]):
-            return -2
-
-            # If the first two elements of the array are in
-        # increasing order and the last two elements
-        # of the array are in decreasing order
-        elif (arr[0] <= arr[1] and
-              arr[n - 2] >= arr[n - 1]):
-            return -1
-
-            # If the first two elements of the array are in
-        # decreasing order and the last two elements
-        # of the array are in increasing order
-        else:
-            return 1
+        return result
 
     def __init__(self, _starting_money, order, ticker, cost) -> None:
         super().__init__()
