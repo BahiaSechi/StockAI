@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Stock } from 'src/app/model/stock';
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import querystring from "querystring";
 import { StrategieResult } from 'src/app/model/strategieResult';
 
@@ -9,6 +9,9 @@ import { StrategieResult } from 'src/app/model/strategieResult';
   providedIn: 'root'
 })
 export class HttpService {
+
+  
+
   constructor(
     private http: HttpClient
   ) {
@@ -36,7 +39,18 @@ export class HttpService {
   }
 
   getStratInfos(): Observable<string> {
-    return new BehaviorSubject<string>("1042.91 41 AAPL 3179.96");
-    
+    //http://51.210.180.105:8081/res
+    //return new BehaviorSubject<string>("1042.91 41 AAPL 3179.96");
+
+    return this.http.get("http://51.210.180.105:8081/res", {responseType: "text"}); 
+  }
+
+  private buildHeaders() {
+    let headers: HttpHeaders = new HttpHeaders();
+
+    headers = headers.append('Access-Control-Allow-Origin', '*');
+    headers = headers.append('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    headers = headers.append("Access-Control-Allow-Methods", "GET, POST, DELETE, PUT");
+    return headers;
   }
 }

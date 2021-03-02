@@ -4,13 +4,14 @@ from bottle import run, get
 
 @get('/res')
 def res():
-    with open("/home/mateo/Documents/Work/Dev/ensicaen/ia/stockai/export/res.txt") as file:
+    #with open("/home/mateo/Documents/Work/Dev/ensicaen/ia/stockai/export/res.txt") as file:
+    with open("D:\\Travail\\ENSI\\Annee_2\\projet\\stockai\\export\\res.txt") as file:
         return file.readline()
 
 
 @get('/file')
 def history():
-    with open("/home/mateo/Documents/Work/Dev/ensicaen/ia/stockai/export/stats.json") as json_file:
+    with open("D:\\Travail\\ENSI\\Annee_2\\projet\\stockai\\export\\stats.json") as json_file:
         return json_file
 
 
