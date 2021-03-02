@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StockService } from 'src/app/services/stock/stock.service';
+import {BehaviorSubject} from "rxjs";
+import {Stock} from "../../model/stock";
 
 @Component({
   selector: 'app-home',
@@ -8,12 +10,22 @@ import { StockService } from 'src/app/services/stock/stock.service';
 })
 export class HomeComponent implements OnInit {
 
+  stock = new BehaviorSubject<Stock[]>([]);
+  stocksName: BehaviorSubject<string[]>;
+  stocks: BehaviorSubject<Stock[]>;
+
   constructor(
-    private stocks: StockService
+    private stocksService: StockService
   ) { }
 
   ngOnInit(): void {
-    this.stocks.getStocksNames();
-  }
+    this.stocksName = this.stocksService.getStocksNames();
+    this.stocks = this.stocksService.getStocks();
 
+    this.stocksName.subscribe(x => {
+      x.forEach(element => {
+        this.stocksService.getStock(element);
+      });
+    });
+  }
 }

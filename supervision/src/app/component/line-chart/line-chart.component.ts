@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {ChartDataSets, ChartType} from "chart.js";
 import {Color, Label} from "ng2-charts";
 import {Stock} from "../../model/stock";
@@ -12,11 +12,14 @@ import {BehaviorSubject} from "rxjs";
 export class LineChartComponent implements OnInit {
 
   @Input()
-  public getterBroker = new BehaviorSubject<Stock>(null);
+  public getterBroker = new BehaviorSubject<Stock[]>([]);
 
   public lineChartData = new BehaviorSubject<ChartDataSets[]>([]);
   public lineChartOptions = {
     responsive: true,
+    animation: {
+      duration: 0 // general animation time
+    },
     scales: {
       xAxes: [{
         type: 'time',
@@ -49,25 +52,26 @@ export class LineChartComponent implements OnInit {
     }
   ];
   public lineChartLegend = true;
-  public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
-    console.log(event, active);
-  }
 
   constructor() { }
 
   ngOnInit(): void {
+
     this.getterBroker.subscribe(myBroker => {
 
-      if (myBroker == null) return
+      if (myBroker == null || myBroker.length == 0) return;
 
-      let myValues = [];
+      let temp = [];
 
-      myBroker.values.forEach(v => {
-        myValues.push({y: v.value, x: new Date(v.timestamp)});
+      myBroker.forEach(v => {
+        let myValues = [];
+        if (v == undefined) return;
+        v.values.forEach(val => {
+          myValues.push({y: val.value, x: new Date(val.timestamp)});
+        });
+        temp.push({data: myValues, label: v.abreviation});
       });
-
-      console.log(myValues);
-      this.lineChartData.next([{ data: myValues, label: myBroker.abreviation}]);
+      this.lineChartData.next(temp);
     });
   }
 

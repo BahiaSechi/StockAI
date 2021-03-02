@@ -21,6 +21,8 @@ import { ChartsModule } from "ng2-charts";
 import { LineChartComponent } from './component/line-chart/line-chart.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpInterceptorService } from './services/http-interceptor/http-interceptor.service';
+import {PanelModule} from "primeng/panel";
+import {CardModule} from "primeng/card";
 
 @NgModule({
   declarations: [
@@ -43,8 +45,10 @@ import { HttpInterceptorService } from './services/http-interceptor/http-interce
     InputNumberModule,
     HttpClientModule,
     ToastModule,
-    BrowserAnimationsModule
-  ],
+    BrowserAnimationsModule,
+    PanelModule,
+    CardModule
+],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpInterceptorService, multi: true }],
   bootstrap: [AppComponent]
 })

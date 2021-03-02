@@ -10,6 +10,7 @@ const routes: Routes = [
   {path:'trainer', component: TrainerComponent},
   {path:'trainer/:stockId', component: TrainerComponent},
   {path:'strategie', component: StrategieComponent},
+  {path: 'strategie/:stratId', component: StrategieComponent},
   {path: 'line-chart', component: LineChartComponent},
   {path: '**', component: LineChartComponent}
 ];
