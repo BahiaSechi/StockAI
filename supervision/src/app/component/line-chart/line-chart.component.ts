@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {ChartDataSets, ChartType} from "chart.js";
 import {Color, Label} from "ng2-charts";
 import {Stock} from "../../model/stock";
@@ -9,7 +9,7 @@ import {BehaviorSubject} from "rxjs";
   templateUrl: './line-chart.component.html',
   styleUrls: ['./line-chart.component.css']
 })
-export class LineChartComponent implements OnInit {
+export class LineChartComponent implements OnInit, AfterViewInit {
 
   @Input()
   public getterBroker = new BehaviorSubject<Stock>(null);
@@ -56,6 +56,10 @@ export class LineChartComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
+  }
+
+  ngAfterViewInit() {
     this.getterBroker.subscribe(myBroker => {
 
       if (myBroker == null) return

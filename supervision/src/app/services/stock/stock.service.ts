@@ -10,7 +10,7 @@ export class StockService {
 
   stocksName = new BehaviorSubject<string[]>([]);
   stocks = new BehaviorSubject<Stock[]>([]);
-  subscription: Subscription;
+  subscription = new Map<string, Subscription>();
 
   constructor(
     private http: HttpService
@@ -50,7 +50,9 @@ export class StockService {
       this.stocks.next(tmp);
     });
 
-    this.subscription = source.subscribe(val => {
+    if (this.subscription.has(abbreviation)) return;
+
+    this.subscription.set(abbreviation, source.subscribe(val => {
       this.http.getHttpSecond(abbreviation).subscribe(o => {
         let valuesArr = [];
         valuesArr.push({timestamp: o.results[0].series[0].values[0][0], value: o.results[0].series[0].values[0][1]});
@@ -68,7 +70,7 @@ export class StockService {
         }
         this.stocks.next(tmp);
       });
-    });
+    }));
   }
 
   getStockInfos(abbreviation: string): Stock {
@@ -101,7 +103,9 @@ export class StockService {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.subscription.forEach((value: Subscription, key: string) => {
+      value.unsubscribe();
+    });
   }
 
 }

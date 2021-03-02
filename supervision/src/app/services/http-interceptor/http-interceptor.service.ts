@@ -10,7 +10,7 @@ export class HttpInterceptorService implements HttpInterceptor  {
   constructor() { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log(req);
+    //console.log(req);
     return next.handle(req);
   }
 }

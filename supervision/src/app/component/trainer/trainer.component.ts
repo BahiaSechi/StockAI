@@ -44,9 +44,11 @@ export class TrainerComponent implements OnInit {
     });
 
     this.route.params.subscribe(params =>{
-      if (params['stockId'] != null && params['stockId'] != undefined && params['stockId'] != "")
+      if (params['stockId'] != null && params['stockId'] != undefined && params['stockId'] != "") {
         this.stockName.next(params['stockId']);
         this.stock.next(this.stocks.getValue().find(x => params['stockId'] == x.abreviation));
+        console.log(this.stock.value);
+      }
     });
 
     this.trainer.getWalletWorth().subscribe(worth => {
