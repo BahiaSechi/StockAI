@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { StrategieService } from 'src/app/services/strategie/strategie.service';
 
 @Component({
   selector: 'app-comparaison',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ComparaisonComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private strats: StrategieService
+  ) { }
 
   ngOnInit(): void {
+    this.strats.getStratInfos("a");
   }
 
 }
