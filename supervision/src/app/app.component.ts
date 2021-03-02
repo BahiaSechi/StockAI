@@ -9,7 +9,7 @@ import { MenuItem } from 'primeng/api';
 export class AppComponent {
     title = 'supervision';
     items: MenuItem[];
-    
+
     constructor (
     ) {}
 
@@ -29,8 +29,9 @@ export class AppComponent {
                 label: 'Trading strategies',
                 icon: 'pi pi-credit-card',
                 items: [
-                    { label: 'Strat 1', routerLink: 'strategie' },
-                    { label: 'Strat 2', routerLink: 'strategie' }
+                    { label: 'Strategies', routerLink: 'strategie'},
+                    { label: 'SMA-RSI', routerLink: 'strategie' },
+                    { label: 'RSI', routerLink: 'strategie' }
                 ]
             }
         ];

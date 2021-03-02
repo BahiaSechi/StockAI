@@ -17,6 +17,9 @@ export class LineChartComponent implements OnInit {
   public lineChartData = new BehaviorSubject<ChartDataSets[]>([]);
   public lineChartOptions = {
     responsive: true,
+    animation: {
+      duration: 0 // general animation time
+    },
     scales: {
       xAxes: [{
         type: 'time',

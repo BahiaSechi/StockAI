@@ -29,7 +29,7 @@ export class StockService {
   }
 
   getStock(abbreviation: string) {
-    const source = interval(2000);
+    const source = interval(1000);
 
     this.http.getHttp(abbreviation).subscribe(o => {
       let valuesArr = [];
