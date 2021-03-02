@@ -1,6 +1,9 @@
 from abc import ABC, abstractmethod
 from time import sleep
 import json
+import threading
+
+import export.export
 
 
 class AbstractInvestor(ABC):
@@ -22,26 +25,46 @@ class AbstractInvestor(ABC):
         ...
 
     def start_investing(self):
-        with open("stats.txt", "w") as file:
+        res_file = open("../export/res.txt", "w")
+        with open("../export/stats.json", "w") as file:
+            thread = threading.Thread(target=export.export.main, args=())
+            thread.daemon = True
+            thread.start()
+
+            file.write("[\n")
+            file.flush()
+
             while self.money > 0:
                 price = self.next_action()
 
-                data = {'money': self.money, 'placed_order': self.placed_order,
-                        'preferred_ticker': self.preferred_ticker, 'stock_value': self.placed_order * price}
+                data = {
+                    'money': self.money,
+                    'placed_order': self.placed_order,
+                    'preferred_ticker': self.preferred_ticker,
+                    'stock_value': self.placed_order * price
+                }
 
-                print(data)
-                file.writelines(
-                    [str(self.money) + ",", str(self.placed_order) + ",", str(self.preferred_ticker) + ",",
-                     str(self.placed_order * price) + "\n"]
-                )
+                json.dump(data, file)
+                file.write(",\n")
                 file.flush()
+
+                res_file.seek(0)
+                res_file.truncate()
+                res_file.write(f"{self.money} {self.placed_order} {self.preferred_ticker} {self.placed_order * price}")
+                res_file.flush()
+
                 sleep(1)
 
-    def list_convergence(self, list):
+        res_file.close()
+
+        file.write("\n]")
+        file.flush()
+
+    def list_convergence(self, liste):
         result = 0
         oldX = 0
 
-        for x in list:
+        for x in liste:
             if x > oldX:
                 result += 1
             elif x < oldX:
