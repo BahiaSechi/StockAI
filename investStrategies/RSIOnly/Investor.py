@@ -8,12 +8,13 @@ from ..AbstractInvestor import AbstractInvestor
 class Investor(AbstractInvestor):
     def next_action(self) -> bool:
         # close = get close prices
-        close = get_data(self.preferred_ticker, 14, PriceType.CLOSE).values.flatten('F')
-        rsi = talib.RSI(close, timeperiod=14)
+        close = get_data(self.preferred_ticker, 50, PriceType.CLOSE).values.flatten('F')
+        rsi = talib.RSI(close, timeperiod=30)
+        rsi = [x for x in rsi if str(x) != 'nan']
 
-        if rsi > 70:
+        if max(rsi) > 55:
             self.place_sell_order(close)
-        elif rsi < 30:
+        elif min(rsi) < 40:
             self.place_buy_order(close)
 
     def place_buy_order(self, cost) -> bool:
