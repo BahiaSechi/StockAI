@@ -3,6 +3,7 @@ import {ChartDataSets, ChartType} from "chart.js";
 import {Color, Label} from "ng2-charts";
 import {Stock} from "../../model/stock";
 import {BehaviorSubject} from "rxjs";
+import 'chartjs-plugin-zoom';
 
 @Component({
   selector: 'app-line-chart',
@@ -41,6 +42,18 @@ export class LineChartComponent implements OnInit {
           labelString: 'Price'
         }
       }]
+    },
+    plugins: {
+      zoom: {
+        pan: {
+          enabled: true,
+          mode: 'xy'
+        },
+        zoom: {
+          enabled: true,
+          mode: 'xy'
+        }
+      }
     }
   };
   public lineChartLabels: Label[] = [];
