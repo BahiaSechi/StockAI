@@ -29,7 +29,7 @@ export class AppComponent {
                 label: 'Trading strategies',
                 icon: 'pi pi-credit-card',
                 items: [
-                    { label: 'Strategies', routerLink: 'strategie'},
+                    { label: 'Strategies', routerLink: 'strategies'},
                     { label: 'SMA-RSI', routerLink: 'strategie' },
                     { label: 'RSI', routerLink: 'strategie' }
                 ]
