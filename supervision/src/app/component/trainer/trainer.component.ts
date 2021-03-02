@@ -18,7 +18,7 @@ export class TrainerComponent implements OnInit {
   stocksName: BehaviorSubject<string[]>;
   stocks: BehaviorSubject<Stock[]>;
   stockName = new BehaviorSubject<string>(null);
-  stock = new BehaviorSubject<Stock>(null);
+  stock = new BehaviorSubject<Stock[]>([]);
   buyingPrice: number = 0;
   sellingPrice: number = 0;
   walletWorth = new BehaviorSubject<number>(100);
@@ -46,7 +46,9 @@ export class TrainerComponent implements OnInit {
     this.route.params.subscribe(params =>{
       if (params['stockId'] != null && params['stockId'] != undefined && params['stockId'] != "") {
         this.stockName.next(params['stockId']);
-        this.stock.next(this.stocks.getValue().find(x => params['stockId'] == x.abreviation));
+        let temp = [];
+        temp.push(this.stocks.getValue().find(x => params['stockId'] == x.abreviation));
+        this.stock.next(temp);
         console.log(this.stock.value);
       }
     });

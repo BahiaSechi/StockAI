@@ -9,10 +9,10 @@ import {BehaviorSubject} from "rxjs";
   templateUrl: './line-chart.component.html',
   styleUrls: ['./line-chart.component.css']
 })
-export class LineChartComponent implements OnInit, AfterViewInit {
+export class LineChartComponent implements OnInit {
 
   @Input()
-  public getterBroker = new BehaviorSubject<Stock>(null);
+  public getterBroker = new BehaviorSubject<Stock[]>([]);
 
   public lineChartData = new BehaviorSubject<ChartDataSets[]>([]);
   public lineChartOptions = {
@@ -56,22 +56,25 @@ export class LineChartComponent implements OnInit, AfterViewInit {
   constructor() { }
 
   ngOnInit(): void {
-    
-  }
 
-  ngAfterViewInit() {
     this.getterBroker.subscribe(myBroker => {
 
-      if (myBroker == null) return
+      if (myBroker == null || myBroker.length == 0) return;
 
-      let myValues = [];
+      console.log("mybroker", myBroker);
 
-      myBroker.values.forEach(v => {
-        myValues.push({y: v.value, x: new Date(v.timestamp)});
+      let temp = [];
+
+      myBroker.forEach(v => {
+        let myValues = [];
+        if (v == undefined) return;
+        v.values.forEach(val => {
+          myValues.push({y: val.value, x: new Date(val.timestamp)});
+        });
+        console.log("Values: ", myValues);
+        temp.push({data: myValues, label: v.abreviation});
       });
-
-      console.log(myValues);
-      this.lineChartData.next([{ data: myValues, label: myBroker.abreviation}]);
+      this.lineChartData.next(temp);
     });
   }
 
