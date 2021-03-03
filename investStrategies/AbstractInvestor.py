@@ -25,6 +25,10 @@ class AbstractInvestor(ABC):
     @abstractmethod
     def place_sell_order(self, cost) -> bool:
         ...
+    @abstractmethod
+    def sell_all(self, cost) -> bool:
+        ...
+
 
     def start_investing(self):
         res_file = open("../export/res.txt", "w")
@@ -61,6 +65,13 @@ class AbstractInvestor(ABC):
 
         file.write("\n]")
         file.flush()
+
+        #if money + the values of the stock >= goal
+        if (self.money + (self.placed_order * price) >= self.defined_goal):
+            #sell all stocks
+            self.sell_all(close[-1])
+            print(f"Goal of {self.goal} has been achieved.\n Money : {self.money} ")
+            break
 
     def list_convergence(self, liste):
         result = 0
