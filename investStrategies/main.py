@@ -4,7 +4,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__) + '../')
 from investStrategies.MultipleTechInd.Investor import Investor
 
 
-#env variables definition
+#dict of default var values
 environ_var = {
     "default_path" : os.path.dirname(os.path.abspath(__file__)) + '/../',
     "default_hostname" : '51.210.180.105',
