@@ -31,8 +31,8 @@ class AbstractInvestor(ABC):
 
 
     def start_investing(self):
-        res_file = open("/home/debian/work/server/stockai/export/res.txt", "w")
-        with open("/home/debian/work/server/stockai/export/stats.json", "w") as file:
+        res_file = open("export/res.txt", "w")
+        with open("export/stats.json", "w") as file:
             thread = threading.Thread(target=export.export.main, args=())
             thread.daemon = True
             thread.start()
@@ -62,7 +62,7 @@ class AbstractInvestor(ABC):
                 #if money + the values of the stock >= goal
                 if (self.money + (self.placed_order * price) >= self.defined_goal):
                     #sell all stocks
-                    self.sell_all(close[-1])
+                    self.sell_all(price[-1])
                     print(f"Goal of {self.goal} has been achieved.\n Money : {self.money} ")
                     break
 

@@ -1,10 +1,10 @@
 import sys
 import os
 
-sys.path.append(os.path.dirname(os.path.abspath(__file__) + '/../'))
+sys.path.append(os.getcwd())
 
-from investStrategies.MultipleTechInd.Investor import Investor as RSISMAInvestor
-from investStrategies.RSIOnly.Investor import Investor as RSIInvestor
+from MultipleTechInd.Investor import Investor as RSISMAInvestor
+from RSIOnly.Investor import Investor as RSIInvestor
 
 # env variables definition
 environ_var = {
