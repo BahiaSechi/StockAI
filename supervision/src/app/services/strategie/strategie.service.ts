@@ -32,7 +32,7 @@ export class StrategieService {
       const source = interval(1000);
 
       this.infos.set(id, new BehaviorSubject<StrategieResult[]>([
-        {money: 1000, placed_order: 0, preferred_ticker: "APPL", stock_value: 1000}
+        {money: 1000, placed_order: 0, preferred_ticker: "APPL", stock_value: 0, goal: 0, date: new Date()}
       ]));
       this.infosSubs.set(id, source.subscribe(lam => {
         this.http.getStratInfos(id).subscribe((x: string) => {
@@ -46,7 +46,9 @@ export class StrategieService {
             money: parseInt(objTmp[0]),
             placed_order: parseInt(objTmp[1]),
             preferred_ticker: objTmp[2],
-            stock_value: parseInt(objTmp[3])
+            stock_value: parseInt(objTmp[3]),
+            goal: parseInt(objTmp[4]),
+            date: new Date()
           })
           this.infos.get(id).next(tmp);
         })

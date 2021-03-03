@@ -2,24 +2,32 @@
 
 <div class="gridSolde">
   <p-card class="column" header="Argent non investi">
-    {{ datas.value[datas.value.length-1].money }} €
+    {{ last.value.money }} €
   </p-card>
 
   <p-card class="column" header="Valeur des actions">
-    {{ datas.value[datas.value.length-1].stock_value }} €
+    {{ last.value.stock_value }} €
   </p-card>
 
-  <p-card class="column" header="Résultat">
+  <p-card class="column" header="Résultat / Goal">
     <div class="result">
       <p>
-        {{datas.value[datas.value.length-1].stock_value - 1000}} €
+        {{last.value.stock_value + last.value.money - 1000}} €
+        <span *ngIf="last.value.goal > -1"> / {{ last.value.goal }} €</span>
       </p>
-      <div *ngIf="datas.value[datas.value.length-1].stock_value + datas.value[datas.value.length-1].money - 1000 > 0; else elseBlock">
+      <div *ngIf="last.value.stock_value + last.value.money - 1000 > last.value.goal
+      && last.value.stock_value + last.value.money - 1000 > 0;">
+        <img class="stonkImg" src="assets/stonks/gigastonks.jpg">
+      </div>
+      <div *ngIf="last.value.stock_value + last.value.money - 1000 > 0;">
         <img class="stonkImg" src="assets/stonks/stonks.png">
       </div>
-      <ng-template #elseBlock>
+      <div *ngIf="last.value.stock_value + last.value.money - 1000 < 0;">
         <img class="stonkImg" src="assets/stonks/nonstonks.png">
-      </ng-template>
+      </div>
+      <div *ngIf="last.value.stock_value + last.value.money - 1000 == 0;">
+        <img class="stonkImg" src="assets/stonks/mmm.jpg_large">
+      </div>
     </div>
   </p-card>
 </div>
