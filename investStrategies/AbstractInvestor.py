@@ -58,6 +58,8 @@ class AbstractInvestor(ABC):
                 res_file.truncate()
                 res_file.write(f"{self.money} {self.placed_order} {self.preferred_ticker} {self.placed_order * price}")
                 res_file.flush()
+
+                #if money + the values of the stock >= goal
                 if (self.money + (self.placed_order * price) >= self.defined_goal):
                     #sell all stocks
                     self.sell_all(close[-1])
@@ -71,7 +73,7 @@ class AbstractInvestor(ABC):
         file.write("\n]")
         file.flush()
 
-        #if money + the values of the stock >= goal
+        
         
 
     def list_convergence(self, liste):
