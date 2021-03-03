@@ -26,8 +26,8 @@ def res():
 
 @app.get('/stats')
 def history():
-    with open("/home/debian/work/server/stockai/export/stats.txt") as json_file:
-        return json_file
+    with open("/home/debian/work/server/stockai/export/stats.txt") as file:
+        return file.readline()
 
 
 def main():
