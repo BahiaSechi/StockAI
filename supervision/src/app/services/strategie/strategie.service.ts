@@ -12,18 +12,30 @@ export class StrategieService {
   description = new Map<string, string>();
   infos = new Map<string, BehaviorSubject<StrategieResult[]>>();
   infosSubs = new Map<string, Subscription>();
+  iaInfos = new BehaviorSubject<string[]>([]);
   //stratInfos = new BehaviorSubject<StrategieResult[]>([]);
   sub: Subscription = null;
+  subIaInfos: Subscription = null;
 
   constructor(
     private http: HttpService
   ) {
-    this.description.set("sma-rsi","blabla");
-    this.description.set("rsi", "blabla mais RSI");
+    this.description.set("sma-rsi","SMA pour Simple Moving Average, est un indicateur assez grossié permettant de voir la convergence actuelle du marché. Grâce au SMA, nous pouvons savoir si un marché est en baisse ou en hausse. En associant ce signal à celui du RSI, on peut obtenir des décisions beaucoup plus réfléchies.");
+    this.description.set("rsi", "RSI pour Relative Strength Index, est un indicateur (plus précisément un oscillateur) boursier permettant d'identifier les moments d'Overbought (prix très élevé) ou d'Oversell (prix très bas), représentés par des seuils. Cet indicateur est très réactif comparé aux autres et nous permet de répondre rapidement aux fluctuation du marché.");
   }
 
   getStratDesc(id: string) : string {
     return this.description.get(id);
+  }
+
+  getIaInfos() {
+    if (this.subIaInfos == null) {
+      this.subIaInfos = this.http.getIAInfos().subscribe(x => {
+        this.iaInfos.next(x.split(";"));
+      });
+    }
+    
+    return this.iaInfos;
   }
 
   getStratInfos(id: string): Observable<StrategieResult[]> {

@@ -8,7 +8,30 @@
   {{datas2.value[datas2.value.length-1].stock_value + datas2.value[datas2.value.length-1].money - 1000}} €
 </p-card>
 </div>
-
+<!--
 <div class="graphGainsGlobal">
   <app-line-chart></app-line-chart>
 </div>
+-->
+<p-table [value]="infosIa">
+  <ng-template pTemplate="header">
+      <tr> <!--  2021-03-03 15:08:07.156428 1000 40 AAPL 4712.4 -->
+          <th>Date</th>
+          <th>Heure</th>
+          <th>Argent restant</th>
+          <th>Nombre titres achetés</th>
+          <th>Titres achetés</th>
+          <th>Valeur totale des actions achetées</th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+      <tr>
+          <td>{{product.date}}</td>
+          <td>{{product.heure}}</td>
+          <td>{{product.fiat}}</td>
+          <td>{{product.nbBougthStocks}}</td>
+          <td>{{product.nom}}</td>
+          <td>{{product.totalPrice}}</td>
+      </tr>
+  </ng-template>
+</p-table>

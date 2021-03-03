@@ -39,10 +39,14 @@ export class HttpService {
   }
 
   getStratInfos(id: string): Observable<string> {
-    //http://51.210.180.105:8081/res
+    //http://51.210.180.105:8081/res http://51.210.180.105:8081/stats
     //return new BehaviorSubject<string>("1042.91 41 AAPL 3179.96");
 
     return this.http.get("http://51.210.180.105:8081/res", {responseType: "text"});
+  }
+
+  getIAInfos(): Observable<string> {
+    return this.http.get("http://51.210.180.105:8081/stats", {responseType: "text"});
   }
 
   private buildHeaders() {
