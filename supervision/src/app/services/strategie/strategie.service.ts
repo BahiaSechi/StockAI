@@ -50,6 +50,7 @@ export class StrategieService {
             goal: parseInt(objTmp[4]),
             date: new Date()
           })
+          console.log(tmp);
           this.infos.get(id).next(tmp);
         })
       })

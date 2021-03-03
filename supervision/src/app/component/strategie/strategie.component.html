@@ -9,7 +9,7 @@
     {{ last.value.stock_value }} €
   </p-card>
 
-  <p-card class="column" header="Résultat / Goal">
+  <p-card class="column" header="{{last.value.goal > -1?'Résultat':'Résultat / Goal'}}">
     <div class="result">
       <p>
         {{last.value.stock_value + last.value.money - 1000}} €

@@ -77,7 +77,7 @@ export class ChartStratComponent implements OnInit {
       myBroker.forEach(strategy => {
         let temp = [];
         strategy.res.forEach(stratRes => {
-          temp.push({y :(stratRes.stock_value + stratRes.money - 1000), x: new Date()});
+          temp.push({y :(stratRes.stock_value + stratRes.money - 1000), x: stratRes.date});
         });
         myValues.push({data: temp, label: strategy.id});
       });
