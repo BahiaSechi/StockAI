@@ -31,8 +31,8 @@ class AbstractInvestor(ABC):
 
 
     def start_investing(self):
-        res_file = open("../export/res.txt", "w")
-        with open("../export/stats.json", "w") as file:
+        res_file = open("/home/debian/work/server/stockai/export/res.txt", "w")
+        with open("/home/debian/work/server/stockai/export/stats.json", "w") as file:
             thread = threading.Thread(target=export.export.main, args=())
             thread.daemon = True
             thread.start()
