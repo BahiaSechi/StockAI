@@ -2,7 +2,8 @@ import talib
 
 from gateway.PriceType import PriceType
 from gateway.gatewayInflux import get_data
-from ..AbstractInvestor import AbstractInvestor
+from investStrategies.AbstractInvestor import AbstractInvestor
+
 
 
 class Investor(AbstractInvestor):

@@ -6,17 +6,16 @@ sys.path.append(os.getcwd())
 from MultipleTechInd.Investor import Investor as RSISMAInvestor
 from RSIOnly.Investor import Investor as RSIInvestor
 
-
 # env variables definition
 environ_var = {
-    "default_path" : os.getcwd(),
-    "default_hostname" : '51.210.180.105',
-    "default_port" : 8081, 
-    "default_strategy" : 'RSISMA', 
-    "default_ticker" : 'AAPL', 
-    "default_funds" : 5000,
-    "default_goal" : -1
-    }
+    "default_path": os.getcwd(),
+    "default_hostname": 'localhost',
+    "default_port": 8081,
+    "default_strategy": 'RSISMA',
+    "default_ticker": 'AAPL',
+    "default_funds": 5000,
+    "default_goal": -1
+}
 
 # project path
 try:
@@ -58,8 +57,7 @@ except KeyError:
 investor = None
 if STOCKAI_STRATEGY == "RSI":
     investor = RSIInvestor(1000, 40, 'AAPL', 20)
-
 elif STOCKAI_STRATEGY == "RSISMA":
     investor = RSISMAInvestor(1000, 40, 'AAPL', 20)
 
-investor.start_investing()
+

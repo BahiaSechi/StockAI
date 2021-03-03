@@ -13,7 +13,6 @@ class AbstractInvestor(ABC):
     preferred_cost = 0
     defined_goal = 18000
 
-
     @abstractmethod
     def next_action(self) -> bool:
         ...
@@ -25,10 +24,10 @@ class AbstractInvestor(ABC):
     @abstractmethod
     def place_sell_order(self, cost) -> bool:
         ...
+
     @abstractmethod
     def sell_all(self, cost) -> bool:
         ...
-
 
     def start_investing(self):
         res_file = open("export/res.txt", "w")
@@ -43,10 +42,14 @@ class AbstractInvestor(ABC):
             while self.money > 0:
                 price = self.next_action()
 
-                #if money + the values of the stock >= goal
+                # if money + the values of the stock >= goal
+                print(self.defined_goal)
+                print(self.money)
+                print(self.placed_order * price)
+                print(self.defined_goal)
                 if self.defined_goal != -1 and self.money + (self.placed_order * price) >= self.defined_goal:
-                    #sell all stocks
-                    self.sell_all(close[-1])
+                    # sell all stocks
+                    self.sell_all(price[-1])
                     print(f"Goal of {self.goal} has been achieved.\n Money : {self.money} ")
                     break
 
@@ -67,9 +70,9 @@ class AbstractInvestor(ABC):
                 res_file.write(f"{self.money} {self.placed_order} {self.preferred_ticker} {self.placed_order * price}")
                 res_file.flush()
 
-                #if money + the values of the stock >= goal
+                # if money + the values of the stock >= goal
                 if (self.money + (self.placed_order * price) >= self.defined_goal):
-                    #sell all stocks
+                    # sell all stocks
                     self.sell_all(price[-1])
                     print(f"Goal of {self.goal} has been achieved.\n Money : {self.money} ")
                     break
@@ -80,9 +83,6 @@ class AbstractInvestor(ABC):
 
         file.write("\n]")
         file.flush()
-
-        
-        
 
     def list_convergence(self, liste):
         result = 0

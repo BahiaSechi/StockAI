@@ -1,5 +1,7 @@
 import json
 import ast
+import os
+
 from bottle import run, get, hook, response, Bottle
 
 app = Bottle()
@@ -29,4 +31,4 @@ def history():
 
 
 def main():
-    run(app, host='51.210.180.105', port=8081, debug=True)
+    run(app, host=os.environ['STOCKAI_HOST'], port=os.environ['STOCKAI_PORT'], debug=True)
