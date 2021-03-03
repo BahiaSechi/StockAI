@@ -1,5 +1,7 @@
 import sys
 import os
+pathlib.Path(__file__).parent.absolute()
+
 <<<<<<< HEAD
 
 #sys.path.append(os.path.dirname(os.path.abspath(__file__) + '/../')
@@ -15,7 +17,6 @@ from investStrategies.RSIOnly.Investor import Investor as RSIInvestor
 
 # env variables definition
 environ_var = {
-<<<<<<< HEAD
     "default_path" : os.path.dirname(os.path.abspath(__file__)) + '/../',
     "default_hostname" : '51.210.180.105',
     "default_port" : 8081, 
@@ -24,7 +25,6 @@ environ_var = {
     "default_funds" : 5000,
     "default_goal" : -1
     }
-=======
     "default_path": os.path.dirname(os.path.abspath(__file__)) + '/../',
     "default_hostname": '51.210.180.105',
     "default_port": 8081,
@@ -33,7 +33,6 @@ environ_var = {
     "default_funds": 5000,
     "default_goal": 10000
 }
->>>>>>> 08ee6615f253cb6fdbc2961d7d154b8c8dc9b542
 
 # project path
 try:
