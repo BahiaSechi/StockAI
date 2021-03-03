@@ -11,6 +11,8 @@ class AbstractInvestor(ABC):
     placed_order = 0
     preferred_ticker = ''
     preferred_cost = 0
+    defined_goal = 18000
+
 
     @abstractmethod
     def next_action(self) -> bool:
@@ -72,9 +74,10 @@ class AbstractInvestor(ABC):
 
         return result
 
-    def __init__(self, _starting_money, order, ticker, cost) -> None:
+    def __init__(self, _starting_money, order, ticker, cost, *goal) -> None:
         super().__init__()
         self.money = _starting_money
         self.placed_order = order
         self.preferred_ticker = ticker
         self.preferred_cost = cost
+        self.defined_goal = goal
