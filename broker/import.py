@@ -8,7 +8,7 @@ import requests
 def do_import():
     headers = ["timestamp", "name", "open", "close", "high", "low", "volume"]
 
-    with open("big_five_stocks_reduced.csv", newline='') as stock_data:
+    with open("broker/big_five_stocks_reduced.csv", newline='') as stock_data:
         reader = csv.reader(stock_data, delimiter=',')
         i = 0
         for row in reader:
