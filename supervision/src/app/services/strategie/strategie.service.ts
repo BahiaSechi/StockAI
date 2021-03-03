@@ -9,6 +9,7 @@ import { HttpService } from '../http/http.service';
 })
 export class StrategieService {
 
+  description = new Map<string, string>();
   infos = new Map<string, BehaviorSubject<StrategieResult[]>>();
   infosSubs = new Map<string, Subscription>();
   //stratInfos = new BehaviorSubject<StrategieResult[]>([]);
@@ -16,16 +17,25 @@ export class StrategieService {
 
   constructor(
     private http: HttpService
-  ) { }
+  ) {
+    this.description.set("sma-rsi","blabla");
+    this.description.set("rsi", "blabla mais RSI");
+  }
+
+  getStratDesc(id: string) : string {
+    return this.description.get(id);
+  }
 
   getStratInfos(id: string): Observable<StrategieResult[]> {
     if (!this.infosSubs.has(id)) {
 
       const source = interval(1000);
 
-      this.infos.set(id, new BehaviorSubject<StrategieResult[]>([]));
+      this.infos.set(id, new BehaviorSubject<StrategieResult[]>([
+        {money: 1000, placed_order: 0, preferred_ticker: "APPL", stock_value: 1000}
+      ]));
       this.infosSubs.set(id, source.subscribe(lam => {
-        this.http.getStratInfos().subscribe((x: string) => {
+        this.http.getStratInfos(id).subscribe((x: string) => {
           if (!this.infos.has(id)) {
             this.infos.set(id, new BehaviorSubject<StrategieResult[]>([]));
           }

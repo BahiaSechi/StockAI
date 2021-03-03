@@ -10,7 +10,7 @@ import { StrategieResult } from 'src/app/model/strategieResult';
 })
 export class HttpService {
 
-  
+
 
   constructor(
     private http: HttpClient
@@ -38,11 +38,11 @@ export class HttpService {
     return this.http.get("http://51.210.180.105:8086/query?" + queryS);
   }
 
-  getStratInfos(): Observable<string> {
+  getStratInfos(id: string): Observable<string> {
     //http://51.210.180.105:8081/res
     //return new BehaviorSubject<string>("1042.91 41 AAPL 3179.96");
 
-    return this.http.get("http://51.210.180.105:8081/res", {responseType: "text"}); 
+    return this.http.get("http://51.210.180.105:8081/res", {responseType: "text"});
   }
 
   private buildHeaders() {
