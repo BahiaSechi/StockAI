@@ -1,6 +1,8 @@
 import sys
 import os
-sys.path.append(os.path.dirname(os.path.abspath(__file__) + '../')
+
+#sys.path.append(os.path.dirname(os.path.abspath(__file__) + '/../')
+sys.path.append('/Users/clem/ENSICAEN/2A/stockai')
 from investStrategies.MultipleTechInd.Investor import Investor
 
 
@@ -12,7 +14,7 @@ environ_var = {
     "default_strategy" : 'RSISMA', 
     "default_ticker" : 'AAPL', 
     "default_funds" : 5000,
-    "default_goal" : 10000
+    "default_goal" : -1
     }
 
 #project path
