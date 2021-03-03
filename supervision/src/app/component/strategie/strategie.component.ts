@@ -12,6 +12,7 @@ import { StrategieService } from 'src/app/services/strategie/strategie.service';
 export class StrategieComponent implements OnInit {
 
   datas = new BehaviorSubject<StrategieResult[]>([]);
+  description : string;
 
   constructor(
     private router : Router,
@@ -20,8 +21,9 @@ export class StrategieComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe(params =>{
+    this.route.params.subscribe(params => {
       if (params['stratId'] != null && params['stratId'] != undefined && params['stratId'] != "") {
+        this.description = this.strats.getStratDesc(params['stratId']);
         this.strats.getStratInfos(params['stratId']).subscribe((x:StrategieResult[]) => {
           this.datas.next(x);
         });

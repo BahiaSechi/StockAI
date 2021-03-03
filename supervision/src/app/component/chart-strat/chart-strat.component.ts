@@ -72,11 +72,10 @@ export class ChartStratComponent implements OnInit {
 
       if (myBroker == null || myBroker.length == 0) return;
 
-      let myValues = [];
-      let v;
+      let myValues;
       let temp = this.StratChartData.value;
       temp = [... temp];
-      v = myBroker[myBroker.length-1];
+      let v = myBroker[myBroker.length-1];
       myValues = temp[0].data;
 
       myValues.push({y :(v.stock_value + v.money - 1000), x: new Date()});
@@ -84,7 +83,6 @@ export class ChartStratComponent implements OnInit {
       temp[0].data = myValues;
 
       this.StratChartData.next(temp);
-      console.log("MyValues", myValues);
     });
 
   }
