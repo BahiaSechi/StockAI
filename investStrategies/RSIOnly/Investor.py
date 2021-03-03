@@ -5,7 +5,6 @@ from gateway.gatewayInflux import get_data
 from investStrategies.AbstractInvestor import AbstractInvestor
 
 
-
 class Investor(AbstractInvestor):
     def next_action(self) -> bool:
         # close = get close prices
@@ -25,3 +24,8 @@ class Investor(AbstractInvestor):
     def place_sell_order(self, cost) -> bool:
         self.money += cost
         self.placed_order -= 1
+
+
+    def sell_all(self, cost) -> bool:
+        self.money += self.placed_order * cost
+        self.placed_order = 0
