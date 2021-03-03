@@ -60,4 +60,4 @@ if STOCKAI_STRATEGY == "RSI":
 elif STOCKAI_STRATEGY == "RSISMA":
     investor = RSISMAInvestor(1000, 40, 'AAPL', 20)
 
-
+investor.start_investing()
