@@ -54,8 +54,8 @@ class AbstractInvestor(ABC):
                     'money': self.money,
                     'placed_order': self.placed_order,
                     'preferred_ticker': self.preferred_ticker,
-                    'stock_value': self.placed_order * price
-                    'goal' : self.defined_goal
+                    'stock_value': self.placed_order * price,
+                    'goal': self.defined_goal
                 }
 
                 json.dump(data, file)
