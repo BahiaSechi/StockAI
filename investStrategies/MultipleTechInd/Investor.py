@@ -56,3 +56,7 @@ class Investor(AbstractInvestor):
     def place_sell_order(self, cost) -> bool:
         self.money += cost
         self.placed_order -= 1
+
+    def sell_all(self, cost) -> bool:
+        self.money += self.placed_order * cost
+        self.placed_order = 0

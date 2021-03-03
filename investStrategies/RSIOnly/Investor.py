@@ -12,9 +12,9 @@ class Investor(AbstractInvestor):
         rsi = talib.RSI(close, timeperiod=30)
         rsi = [x for x in rsi if str(x) != 'nan']
 
-        if max(rsi) > 55:
+        if max(rsi) > 70:
             self.place_sell_order(close)
-        elif min(rsi) < 40:
+        elif min(rsi) < 30:
             self.place_buy_order(close)
 
     def place_buy_order(self, cost) -> bool:
