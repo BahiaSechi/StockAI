@@ -5,18 +5,25 @@
 </p-panel>
 
 <div class="gridSolde">
-  <p-card class="column" header="Solde de base">
-    Solde de base
+  <p-card class="column" header="Argent non investi" style="text-align: center">
+    {{ datas.value.money }} €
   </p-card>
 
-  <p-card class="column" header="Solde courant">
-    Solde courant
+  <p-card class="column" header="Valeur des actions" style="text-align: center">
+    {{ datas.value.stock_value }} €
   </p-card>
 
-  <p-card class="column" header="Résultat">
+  <p-card class="column" header="Résultat" style="text-align: center">
     <div class="result">
-      <p style="text-align: center">Résultat en €</p>
-      <img class="stonkImg" src="assets/stonks/stonks.png">
+      <p>
+        {{datas.value.stock_value - 1000}} €
+      </p>
+      <div *ngIf="datas.value.stock_value + datas.value.money - 1000 > 0; else elseBlock">
+        <img class="stonkImg" src="assets/stonks/stonks.png">
+      </div>
+      <ng-template #elseBlock>
+        <img class="stonkImg" src="assets/stonks/nonstonks.png">
+      </ng-template>
     </div>
   </p-card>
 </div>

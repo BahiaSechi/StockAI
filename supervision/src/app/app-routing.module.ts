@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: 'strategie/:stratId', component: StrategieComponent},
   {path:'strategies', component: ComparaisonComponent},
   {path: 'line-chart', component: LineChartComponent},
-  {path: '**', component: LineChartComponent}
+  {path: '**', component: HomeComponent}
 ];
 
 @NgModule({

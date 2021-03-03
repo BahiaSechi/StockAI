@@ -30,8 +30,8 @@ export class AppComponent {
                 icon: 'pi pi-credit-card',
                 items: [
                     { label: 'Strategies', routerLink: 'strategies'},
-                    { label: 'SMA-RSI', routerLink: 'strategie' },
-                    { label: 'RSI', routerLink: 'strategie' }
+                    { label: 'SMA-RSI', routerLink: 'strategie/a' },
+                    { label: 'RSI', routerLink: 'strategie/b' }
                 ]
             }
         ];
