@@ -22,6 +22,6 @@ ENV STOCKAI_GOAL 10000
 
 EXPOSE 8081
 
-ENTRYPOINT python3 -m pip install -r requirements
+ENTRYPOINT python3 -m pip install -r requirements.txt
 
 CMD python3 investStrategies/main.py
