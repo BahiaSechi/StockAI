@@ -23,7 +23,9 @@ export class StrategieService {
 
       const source = interval(1000);
 
-      this.infos.set(id, new BehaviorSubject<StrategieResult[]>([]));
+      this.infos.set(id, new BehaviorSubject<StrategieResult[]>([
+        {money: 1000, placed_order: 0, preferred_ticker: "APPL", stock_value: 1000}
+      ]));
       this.infosSubs.set(id, source.subscribe(lam => {
         this.http.getStratInfos().subscribe((x: string) => {
           if (!this.infos.has(id)) {

@@ -1,1 +1,12 @@
-<p>chart-strat works!</p>
+<div style="display: block" width="100%" height="100%">
+
+  <canvas baseChart
+          [datasets]="StratChartData|async"
+          [labels]="StratChartLabels"
+          [options]="StratChartOptions"
+          [colors]="StratChartColors"
+          [legend]="StratChartLegend"
+          [chartType]="StratChartType">
+  </canvas>
+
+</div>
