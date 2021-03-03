@@ -1,6 +1,6 @@
 import sys
 
-sys.path.append("/home/debian/work/server/stockai/")
+sys.path.append("/home/mateo/Documents/Work/Dev/ensicaen/ia/stockai")
 
 from investStrategies.MultipleTechInd.Investor import Investor
 import os
