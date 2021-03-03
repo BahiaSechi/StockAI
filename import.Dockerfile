@@ -1,7 +1,6 @@
-FROM debian:10
+FROM python:3
 
-ADD broker /app
-ADD requirements.txt /app
+ADD . /app
 WORKDIR /app
 
 ENTRYPOINT python3 broker/import.py

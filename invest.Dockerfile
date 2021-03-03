@@ -7,16 +7,21 @@ RUN wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz &&\
     make && \
     make install && \
     cd .. && \
-    rm -rf ta-lib* && \
+    rm -rf ta-lib*
 
-ADD investStrategies /app
-ADD export /app
-ADD gateway /app
+ADD . /app
 ADD requirements.txt /app
 WORKDIR /app
 
+ENV STOCKAI_HOSTNAME 51.210.180.105
+ENV STOCKAI_PORT 8081
+ENV STOCKAI_STRATEGY RSISMA
+ENV STOCKAI_TICKER AAPL
+ENV STOCKAI_FUNDS 1000
+ENV STOCKAI_GOAL 10000
+
 EXPOSE 8081
 
-ENTRYPOINT pip install -r requirements
+ENTRYPOINT python3 -m pip install -r requirements
 
-RUN python3 investStrategies/main.py
+CMD python3 investStrategies/main.py
