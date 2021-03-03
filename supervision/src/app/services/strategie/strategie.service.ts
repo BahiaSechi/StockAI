@@ -20,20 +20,30 @@ export class StrategieService {
 
   getStratInfos(id: string): Observable<StrategieResult[]> {
     if (!this.infosSubs.has(id)) {
-      this.infos.set(id, new BehaviorSubject<StrategieResult[]>([]));
+
       const source = interval(1000);
-      this.infosSubs.set(id, this.http.getStratInfos().subscribe((x: string) => {
-        if (!this.infos.has(id)) {
-          this.infos.set(id, new BehaviorSubject<StrategieResult[]>([]));
-        }
-        let tmp = this.infos.get(id).value;
-        let objTmp = x.split(' ');
-        tmp = [...tmp];
-        tmp.push({money: parseInt(objTmp[0]), placed_order: parseInt(objTmp[1]), preferred_ticker: objTmp[2], stock_value: parseInt(objTmp[3])})
-        this.infos.get(id).next(tmp);
-      }));
+
+      this.infos.set(id, new BehaviorSubject<StrategieResult[]>([]));
+      this.infosSubs.set(id, source.subscribe(lam => {
+        this.http.getStratInfos().subscribe((x: string) => {
+          if (!this.infos.has(id)) {
+            this.infos.set(id, new BehaviorSubject<StrategieResult[]>([]));
+          }
+          let tmp = this.infos.get(id).value;
+          let objTmp = x.split(' ');
+          tmp = [...tmp];
+          tmp.push({
+            money: parseInt(objTmp[0]),
+            placed_order: parseInt(objTmp[1]),
+            preferred_ticker: objTmp[2],
+            stock_value: parseInt(objTmp[3])
+          })
+          this.infos.get(id).next(tmp);
+        })
+      })
+    )
+      return this.infos.get(id);
     }
-    return this.infos.get(id);
   }
 
 

@@ -24,6 +24,7 @@ import { HttpInterceptorService } from './services/http-interceptor/http-interce
 import {PanelModule} from "primeng/panel";
 import {CardModule} from "primeng/card";
 import { ComparaisonComponent } from './component/comparaison/comparaison.component';
+import { ChartStratComponent } from './component/chart-strat/chart-strat.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ComparaisonComponent } from './component/comparaison/comparaison.compon
     StrategieComponent,
     PredictionComponent,
     LineChartComponent,
-    ComparaisonComponent
+    ComparaisonComponent,
+    ChartStratComponent
   ],
   imports: [
     BrowserModule,
