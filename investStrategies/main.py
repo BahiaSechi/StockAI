@@ -1,5 +1,14 @@
 import sys
 import os
+pathlib.Path(__file__).parent.absolute()
+
+<<<<<<< HEAD
+
+#sys.path.append(os.path.dirname(os.path.abspath(__file__) + '/../')
+sys.path.append('/Users/clem/ENSICAEN/2A/stockai')
+from investStrategies.MultipleTechInd.Investor import Investor
+=======
+>>>>>>> 08ee6615f253cb6fdbc2961d7d154b8c8dc9b542
 
 sys.path.append(os.getcwd())
 
@@ -8,6 +17,14 @@ from RSIOnly.Investor import Investor as RSIInvestor
 
 # env variables definition
 environ_var = {
+    "default_path" : os.path.dirname(os.path.abspath(__file__)) + '/../',
+    "default_hostname" : '51.210.180.105',
+    "default_port" : 8081, 
+    "default_strategy" : 'RSISMA', 
+    "default_ticker" : 'AAPL', 
+    "default_funds" : 5000,
+    "default_goal" : -1
+    }
     "default_path": os.path.dirname(os.path.abspath(__file__)) + '/../',
     "default_hostname": '51.210.180.105',
     "default_port": 8081,

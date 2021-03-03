@@ -43,11 +43,19 @@ class AbstractInvestor(ABC):
             while self.money > 0:
                 price = self.next_action()
 
+                #if money + the values of the stock >= goal
+                if self.defined_goal != -1 and self.money + (self.placed_order * price) >= self.defined_goal:
+                    #sell all stocks
+                    self.sell_all(close[-1])
+                    print(f"Goal of {self.goal} has been achieved.\n Money : {self.money} ")
+                    break
+
                 data = {
                     'money': self.money,
                     'placed_order': self.placed_order,
                     'preferred_ticker': self.preferred_ticker,
                     'stock_value': self.placed_order * price
+                    'goal' : self.defined_goal
                 }
 
                 json.dump(data, file)

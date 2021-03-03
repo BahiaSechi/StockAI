@@ -3,6 +3,7 @@ import {BehaviorSubject} from "rxjs";
 import {ChartDataSets, ChartType} from "chart.js";
 import {Color, Label} from "ng2-charts";
 import {StrategieResult} from "../../model/strategieResult";
+import {Strategie} from "../../model/strategie";
 
 @Component({
   selector: 'app-chart-strat',
@@ -12,7 +13,7 @@ import {StrategieResult} from "../../model/strategieResult";
 export class ChartStratComponent implements OnInit {
 
   @Input()
-  public getterStrat = new BehaviorSubject<StrategieResult[]>([]);
+  public getterStrat = new BehaviorSubject<Strategie[]>([]);
 
   public StratChartData = new BehaviorSubject<ChartDataSets[]>([{data: [], label: "Stratégie SMA-RSI"}]);
   public StratChartOptions = {
@@ -72,17 +73,15 @@ export class ChartStratComponent implements OnInit {
 
       if (myBroker == null || myBroker.length == 0) return;
 
-      let myValues;
-      let temp = this.StratChartData.value;
-      temp = [... temp];
-      let v = myBroker[myBroker.length-1];
-      myValues = temp[0].data;
-
-      myValues.push({y :(v.stock_value + v.money - 1000), x: new Date()});
-
-      temp[0].data = myValues;
-
-      this.StratChartData.next(temp);
+      let myValues = [];
+      myBroker.forEach(strategy => {
+        let temp = [];
+        strategy.res.forEach(stratRes => {
+          temp.push({y :(stratRes.stock_value + stratRes.money - 1000), x: new Date()});
+        });
+        myValues.push({data: temp, label: strategy.id});
+      });
+      this.StratChartData.next(myValues);
     });
 
   }

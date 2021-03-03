@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import { BehaviorSubject } from 'rxjs';
 import { StrategieResult } from 'src/app/model/strategieResult';
 import { StrategieService } from 'src/app/services/strategie/strategie.service';
+import {Strategie} from "../../model/strategie";
 
 @Component({
   selector: 'app-strategie',
@@ -11,7 +12,8 @@ import { StrategieService } from 'src/app/services/strategie/strategie.service';
 })
 export class StrategieComponent implements OnInit {
 
-  datas = new BehaviorSubject<StrategieResult[]>([]);
+  datas = new BehaviorSubject<Strategie[]>([]);
+  last = new BehaviorSubject<StrategieResult>(null);
   description : string;
 
   constructor(
@@ -25,7 +27,8 @@ export class StrategieComponent implements OnInit {
       if (params['stratId'] != null && params['stratId'] != undefined && params['stratId'] != "") {
         this.description = this.strats.getStratDesc(params['stratId']);
         this.strats.getStratInfos(params['stratId']).subscribe((x:StrategieResult[]) => {
-          this.datas.next(x);
+          this.datas.next([{id: params['stratId'], res: x}]);
+          this.last.next(x[x.length-1]);
         });
       }
     });
