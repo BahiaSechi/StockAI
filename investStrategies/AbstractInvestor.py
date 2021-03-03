@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from datetime import datetime
 from time import sleep
 import json
 import threading
@@ -31,13 +32,10 @@ class AbstractInvestor(ABC):
 
     def start_investing(self):
         res_file = open("export/res.txt", "w")
-        with open("export/stats.json", "w") as file:
+        with open("export/stats.txt", "w") as file:
             thread = threading.Thread(target=export.export.main, args=())
             thread.daemon = True
             thread.start()
-
-            file.write("[\n")
-            file.flush()
 
             while self.money > 0:
                 price = self.next_action()
@@ -61,8 +59,8 @@ class AbstractInvestor(ABC):
                     'goal': self.defined_goal
                 }
 
-                json.dump(data, file)
-                file.write(",\n")
+                file.write(
+                    f"{datetime.now()} {self.money} {self.placed_order} {self.preferred_ticker} {self.placed_order * price};")
                 file.flush()
 
                 res_file.seek(0)
@@ -80,9 +78,6 @@ class AbstractInvestor(ABC):
                 sleep(1)
 
         res_file.close()
-
-        file.write("\n]")
-        file.flush()
 
     def list_convergence(self, liste):
         result = 0

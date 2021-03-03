@@ -24,11 +24,11 @@ def res():
         return file.readline()
 
 
-@app.get('/file')
+@app.get('/stats')
 def history():
-    with open("/home/debian/work/server/stockai/export/stats.json") as json_file:
-        return json_file
+    with open("/home/debian/work/server/stockai/export/stats.txt") as file:
+        return file.readline()
 
 
 def main():
-    run(app, host=os.environ['STOCKAI_HOST'], port=os.environ['STOCKAI_PORT'], debug=True)
+    run(app, host="51.210.180.105", port=8081, debug=True)
